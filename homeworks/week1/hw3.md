@@ -16,7 +16,7 @@
      - 右鍵創建資料夾
      - 命名
 
-   - CUI :
+   - CLI :
      - `cd desktop` (這邊以在桌面創建為例, cd = Change Directory )
      - `mkdir name` (創建資料夾且命名, mkdir = MaKe DIRectory )
 
@@ -27,7 +27,7 @@
      - 停留在想要刪除資料夾的上層
      - 右鍵刪除資料夾
 
-   - CUI :
+   - CLI :
      - `cd desktop` (這邊以刪除在桌面的資料夾為例, cd = Change Directory )
      - `rmdir name` (刪除資料夾, rmdir = ReMove DIRectory )
 
