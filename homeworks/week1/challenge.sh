@@ -5,4 +5,4 @@ do
 	touch "$i.js";
 	echo "$i.js 檔案建立完成";
 done
-	echo "共$1個檔案建立完成🥳"
+echo "共$1個檔案建立完成🥳";
