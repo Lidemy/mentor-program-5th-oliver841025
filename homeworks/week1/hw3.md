@@ -17,8 +17,13 @@
      - 命名
 
    - CLI :
-     - `cd desktop` (這邊以在桌面創建為例, cd = Change Directory )
-     - `mkdir name` (創建資料夾且命名, mkdir = MaKe DIRectory )
+
+     - `cd ~/Desktop` (這邊以在桌面創建為例, cd = Change Directory )
+
+     * `cd Desktop` 你已經在使用者 home 資料夾中
+     * `cd ~/Desktop` 人在其他資料夾
+
+     - `mkdir <想建立的資料夾名稱>` (創建資料夾且命名, mkdir = MaKe DIRectory )
 
 2. 刪除資料夾
 
@@ -28,16 +33,20 @@
      - 右鍵刪除資料夾
 
    - CLI :
-     - `cd desktop` (這邊以刪除在桌面的資料夾為例, cd = Change Directory )
-     - `rmdir name` (刪除資料夾, rmdir = ReMove DIRectory )
 
-\
+     - `cd ~/Desktop` (這邊以刪除在桌面的資料夾為例, cd = Change Directory )
+
+     * `cd Desktop` 你已經在使用者 home 資料夾中
+     * `cd ~/Desktop` 人在其他資料夾
+
+     - `rmdir <想刪除的資料夾名稱>` (刪除資料夾, rmdir = ReMove DIRectory )
 
 實際操作：
 
 使用 command line 建立一個叫做 wifi 的資料夾，並且在裡面建立一個叫 afu.js 的檔案
 
-1. `cd desktop` (切換至桌面，這邊一樣假設在桌面創建)
+1. `cd ~/Desktop` (切換至桌面，這邊一樣假設在桌面創建)
 2. `mkdir wifi` （創建 wifi 資料夾）
 3. `cd wifi` （切換至 wifi 資料夾中）
 4. `touch afu.js` （創建 afu.js 檔案）
+5. 在這些步驟間，可隨時使用 `pwd` 檢查目前所在資料夾，檔案建立完成使用 `ls` 檢查檔案是否建立成功

@@ -29,7 +29,7 @@
 
 12. `git push origin week1` ，推上遠端倉庫
 
-13. 去 GitHub 上面發 PR ，確定就 merge 到 master
+13. 去 GitHub 上面發 PR ，等待助教或老師 merge 到 master
 
 14. 去 Files changed 檢查有沒有要更改的地方
 
