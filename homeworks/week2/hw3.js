@@ -6,5 +6,3 @@ function reverse(str) {
   }
   console.log(newArray.join(""));
 }
-
-reverse("hello");

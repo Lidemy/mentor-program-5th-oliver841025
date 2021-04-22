@@ -1,18 +1,19 @@
 function join(arr, concatStr) {
   let newStr = arr[0];
-  for (let i = 1; i < arr.length; i++) {
-    newStr += concatStr + arr[i];
+  if (arr !== []) {
+    for (let i = 1; i < arr.length; i++) {
+      newStr += concatStr + arr[i];
+    }
+  } else {
+    return newStr;
   }
   return newStr;
 }
 
 function repeat(str, times) {
-  let arr = str.split(" ");
-  for (let i = 1; i <= times - 1; i++) {
-    arr.push(str);
+  let result = "";
+  for (let i = 1; i <= times; i++) {
+    result += str;
   }
-  return arr.join("");
+  return result;
 }
-
-join(["a", "b"], "!");
-repeat("a", 5);

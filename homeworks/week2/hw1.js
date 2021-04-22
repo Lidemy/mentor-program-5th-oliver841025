@@ -6,4 +6,4 @@ function printStars(n) {
   } else console.log("請輸入1~30");
 }
 
-printStars(5);
+
