@@ -19,11 +19,11 @@ rl.on("close", function () {
 function solve(lines) {
   const m = Number(lines[0]);
   for (let i = 1; i <= m; i++) {
-    console.log(whoIsWinner(lines[i]));
+    console.log(getWinner(lines[i]));
   }
 }
 
-function whoIsWinner(set) {
+function getWinner(set) {
   const [a, b, result] = set.split(" ");
 
   if (BigInt(a) === BigInt(b)) {

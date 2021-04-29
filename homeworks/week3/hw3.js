@@ -23,7 +23,7 @@ function solve(lines) {
     arr.push(Number(lines[i]));
   }
   for (let i = 0; i < n; i++) {
-    isPrime(arr[i]) ? console.log("Prime") : console.log("Composite");
+    console.log(isPrime(arr[i]) ? "Prime" : "Composite");
   }
 }
 

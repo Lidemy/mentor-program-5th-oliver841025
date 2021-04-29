@@ -22,9 +22,7 @@ function solve(lines) {
   let m = Number(temp[1]);
 
   for (let i = n; i <= m; i++) {
-    if (isNarcissistic(i)) {
-      console.log(i);
-    }
+    if (isNarcissistic(i)) console.log(i);
   }
 }
 
@@ -44,10 +42,10 @@ function isNarcissistic(n) {
   let m = n;
   let digits = digitsCount(m);
   let sum = 0;
-  while (m != 0) {
+  while (m !== 0) {
     let num = m % 10;
     sum += num ** digits;
     m = Math.floor(m / 10);
   }
-  return sum === n ? true : false;
+  return sum === n;
 }
