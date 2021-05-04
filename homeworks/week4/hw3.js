@@ -11,7 +11,7 @@ if (!userInput) {
 request.get(`${URL}/name/${userInput}`, (err, res, body) => {
   const data = JSON.parse(body);
 
-  if (data.status === 404) {
+  if (data.statusCode >= 400 && data.statusCode < 500) {
     return console.log("找不到國家資訊");
   }
 
