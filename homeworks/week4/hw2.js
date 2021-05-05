@@ -2,25 +2,25 @@ const request = require("request");
 const process = require("process");
 const URL = "https://lidemy-book-store.herokuapp.com";
 
-const userInput1 = process.argv[2];
-const userInput2 = process.argv[3]; //id || bookName
-const userInput3 = process.argv[4]; // id || bookName
+const action = process.argv[2];
+const bookId = process.argv[3]; // create 時，不需輸入 id，故變成輸入 bookName
+const bookName = process.argv[4];
 
-switch (userInput1) {
+switch (action) {
   case "list":
     listBooks();
     break;
   case "read":
-    readOneBook(userInput2);
+    readOneBook(bookId);
     break;
   case "delete":
-    deleteOneBook(userInput2);
+    deleteOneBook(bookId);
     break;
   case "create":
-    createOneBook(userInput2);
+    createOneBook(bookId); // 這邊其實是輸入 bookName
     break;
   case "update":
-    updateOneBook(userInput2, userInput3);
+    updateOneBook(bookId, bookName);
     break;
   default:
     console.log("Available commands: list, read, delete, create, update 😉");
@@ -28,12 +28,13 @@ switch (userInput1) {
 
 function listBooks() {
   request.get(`${URL}/books?_limit=20`, (err, res, body) => {
-    if (err) return console.log("擷取失敗", err);
+    if (res.statusCode >= 400 && res.statusCode < 600)
+      return console.error("擷取失敗");
     let data;
     try {
       data = JSON.parse(body);
     } catch (err) {
-      return console.log(err);
+      return console.error(err);
     }
     for (let i = 0; i < data.length; i++) {
       const { id, name } = data[i];
@@ -46,7 +47,8 @@ function readOneBook(id) {
   request.get(`${URL}/books/${id}`, (err, res, body) => {
     const data = JSON.parse(body);
     const { id, name } = data;
-    if (err) return console.log("擷取失敗");
+    if (res.statusCode >= 400 && res.statusCode < 600)
+      return console.error("擷取失敗");
     return console.log(`${id} ${name}`);
   });
 }
@@ -55,7 +57,8 @@ function deleteOneBook(id) {
   request.delete(`${URL}/books/${id}`, (err, res, body) => {
     const data = JSON.parse(body);
     const { id, name } = data;
-    if (err) return console.log("刪除失敗");
+    if (res.statusCode >= 400 && res.statusCode < 600)
+      return console.error("刪除失敗");
     return console.log("刪除成功");
   });
 }
@@ -64,10 +67,11 @@ function createOneBook(bookName) {
   request.post(
     {
       url: `${URL}/books`,
-      form: { id: "", name: bookName },
+      form: { name: bookName },
     },
     (err, res, body) => {
-      if (err) return console.log("新增失敗");
+      if (res.statusCode >= 400 && res.statusCode < 600)
+        return console.error("新增失敗");
       return console.log("新增成功");
     }
   );
@@ -80,7 +84,8 @@ function updateOneBook(id, bookName) {
       form: { name: bookName },
     },
     (err, res, body) => {
-      if (err) return console.log("更新失敗");
+      if (res.statusCode >= 400 && res.statusCode < 600)
+        return console.error("更新失敗");
       return console.log("更新成功");
     }
   );
