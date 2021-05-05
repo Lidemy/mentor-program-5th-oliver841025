@@ -3,8 +3,8 @@ const process = require("process");
 const URL = "https://lidemy-book-store.herokuapp.com";
 
 const action = process.argv[2];
-const bookId = process.argv[3]; // create 時，不需輸入 id，故變成輸入 bookName
-const bookName = process.argv[4];
+const bookId = process.argv[3];
+const bookName = process.argv[4] || process.argv[3];
 
 switch (action) {
   case "list":
@@ -17,7 +17,7 @@ switch (action) {
     deleteOneBook(bookId);
     break;
   case "create":
-    createOneBook(bookId); // 這邊其實是輸入 bookName
+    createOneBook(bookName);
     break;
   case "update":
     updateOneBook(bookId, bookName);

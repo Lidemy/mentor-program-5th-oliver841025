@@ -26,11 +26,7 @@ request.get(`${URL}/name/${userInput}`, (err, res, body) => {
     }
     // 4xx, 5xx 錯誤情況
   } else {
-    try {
-      const msg = JSON.parse(body);
-      console.error(msg);
-    } catch (err) {
-      console.error(err);
-    }
+    console.log(res.statusCode);
+    console.log("擷取錯誤 ...");
   }
 });
