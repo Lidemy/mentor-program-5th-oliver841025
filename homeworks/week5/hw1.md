@@ -100,40 +100,31 @@ rl.on("close", function () {
 
 // 上面都不用管，只需要完成這個 function 就好，可以透過 lines[i] 拿取內容
 function solve(lines) {
-  const bring = Number(lines[0]);
-  const howMany = Number(lines[1]);
-  const arrPieces = [];
-  for (let i = 2; i < lines.length; i++) {
-    arrPieces.push(lines[i]);
-  }
-  console.log(stealMost(bring, howMany, arrPieces));
-}
-
-function stealMost(bring, howMany, arrPieces) {
+  const steal = Number(lines[0]);
+  const total = Number(lines[1]);
+  const arr = [];
   let result = 0;
-  let newArr = [];
-  if (bring < howMany) {
-    // 找到最大，然後 push 進去，接續下去，直到照大小排好，取出前 bring 個
-    for (let i = 0; i < bring; i++) {
-      let max = Math.max(...arrPieces);
-      newArr.push(max);
-      arrPieces.pop(max);
-      result += newArr[i];
+  if (steal === 0) {
+    result = 0;
+  } else if (total < steal) {
+    for (let i = 2; i < lines.length; i++) {
+      result += Number(lines[i]);
     }
-    return result;
-  }
-  if (bring >= howMany) {
-    for (let i of arrPieces) {
-      result += i;
+  } else {
+    for (let i = 2; i < lines.length; i++) {
+      arr.push(Number(lines[i]));
     }
-    return result;
+    arr.sort((a, b) => b - a); // 降冪排列
+    // console.log(arr);
+    for (let i = 0; i < steal; i++) {
+      result += arr[i];
+    }
   }
+  console.log(result);
 }
-// solve([4, 6, 1, 2, 3, 8, 10, 800]);
+//solve([4, 6, 1, 2, 3, 8, 10, 800]);
 
 ```
-
-**這題我其實沒有得到 AC，但我百思不得其解，各種狀況在本地測試都能得到預期答案，但就是 AC 不了，還請助教開示哪邊出問題，一定有什麼盲點 QQ**
 
 ### 1018
 
