@@ -24,38 +24,43 @@
 
         <div class="wrapper">
           <div class="name">
-            <div class="sub__title">暱稱 <span>*</span></div>
-            <input class="input__space" placeholder="您的回答" />
+            <div class="sub__title required">暱稱 </div>
+            <input name="name" class="input__space" placeholder="您的回答" />
           </div>
           <div class="email">
-            <div class="sub__title">電子郵件 <span>*</span></div>
-            <input class="input__space" placeholder="您的電子郵件" />
+            <div class="sub__title required">電子郵件 </div>
+            <input name="email" class="input__space" placeholder="您的電子郵件" />
           </div>
           <div class="phone">
-            <div class="sub__title">手機號碼 <span>*</span></div>
-            <input class="input__space" placeholder="您的手機號碼" />
+            <div class="sub__title required">手機號碼 </div>
+            <input name="phone" class="input__space" placeholder="您的手機號碼" />
           </div>
           <div class="type">
-            <div class="sub__title">報名類型 <span>*</span></div>
-            <input 
+            <div class="sub__title required">報名類型 </div>
+            <label>
+              <input 
               type="radio"
               name="option"
               value="bed"
-            /> 躺在床上用想像力實作<br /><br />
-            <input 
+            /> 躺在床上用想像力實作
+            </label>
+            <br /><br />
+            <label>
+              <input 
               type="radio"
               name="option"
               value="floor"
             /> 趴在地上滑手機找現成的
+            </label>
           </div>
           <div class="know">
-            <div class="sub__title">你怎麼知道這個活動的？ <span>*</span></div>
-            <input class="input__space" placeholder="您的回答" />
+            <div class="sub__title required">你怎麼知道這個活動的？ </div>
+            <input name="know" class="input__space" placeholder="您的回答" />
           </div>
           <div class="other">
-            <div class="sub__title">其他</div>
+            <div class="sub__title">其他 </div>
             <p>對活動的一些建議</p>
-            <input class="input__space" placeholder="您的回答" />
+            <input name="answer" class="input__space" placeholder="您的回答" />
           </div>
           <div class="submit">
             <button type="submit">提交</button>
