@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: MicrosoftJhengHei, sans-serif;
+  /* border: 1px solid green; */
+}
+body {
+  background: #eee;
+}
+.body__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px 50px 100px 50px;
+}
+.form {
+  background: #ffffff;
+  border-top: 7px solid #fad312;
+  box-shadow: 1.8px 2.4px 5px 0px rgba(0, 0, 0, 0.3);
+  width: 645px;
+}
+.wrapper {
+  margin: 30px;
+}
+.name,
+.email,
+.phone,
+.type,
+.know,
+.other,
+.submit {
+  margin-bottom: 60px;
+  letter-spacing: 1px;
+  font-weight: 200;
+}
+.name {
+  padding-top: 20px;
+}
+
+.sub__title {
+  margin-bottom: 13px;
+  font-weight: 400;
+  font-size: 20px;
+}
+button {
+  background: #fad312;
+  padding: 13px 31px 13px 32px;
+  border-radius: 3px;
+  border: none;
+  letter-spacing: 1px;
+}
+.other p {
+  margin-bottom: 20px;
+}
+
+.must {
+  margin-top: 25px;
+  color: #e74149;
+  font-size: 16px;
+  font-weight: 400;
+}
+.submit p {
+  margin-top: 15px;
+}
+.title__desc {
+  margin-top: 30px;
+}
+.title__desc p {
+  margin-bottom: 8px;
+}
+.input__space {
+  width: 280px;
+  height: 23px;
+  border: 1px solid #d0d0d0;
+}
+::placeholder {
+  color: #d0d0d0;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  color: #999999;
+  font-size: 13px;
+  padding: 18px 0 18px 0;
+  margin-top: 70px;
+}
+.required:after {
+  content: "*";
+  color: #e74149;
+}
+@media (max-width: 768px) {
+  .wrapper {
+    margin-left: 20px;
+  }
+}
