@@ -7,6 +7,25 @@
 body {
   background: #eee;
 }
+button {
+  background: #fad312;
+  padding: 13px 31px 13px 32px;
+  border-radius: 3px;
+  border: none;
+  letter-spacing: 1px;
+}
+.other p {
+  margin-bottom: 20px;
+}
+.submit p {
+  margin-top: 15px;
+}
+.title__desc {
+  margin-top: 30px;
+}
+.title__desc p {
+  margin-bottom: 8px;
+}
 .body__wrapper {
   display: flex;
   flex-direction: column;
@@ -42,31 +61,11 @@ body {
   font-weight: 400;
   font-size: 20px;
 }
-button {
-  background: #fad312;
-  padding: 13px 31px 13px 32px;
-  border-radius: 3px;
-  border: none;
-  letter-spacing: 1px;
-}
-.other p {
-  margin-bottom: 20px;
-}
-
 .must {
   margin-top: 25px;
   color: #e74149;
   font-size: 16px;
   font-weight: 400;
-}
-.submit p {
-  margin-top: 15px;
-}
-.title__desc {
-  margin-top: 30px;
-}
-.title__desc p {
-  margin-bottom: 8px;
 }
 .input__space {
   width: 280px;
@@ -83,7 +82,7 @@ button {
   background: #000000;
   color: #999999;
   font-size: 13px;
-  padding: 18px 0 18px 0;
+  padding: 18px 0;
   margin-top: 70px;
 }
 .required:after {
