@@ -80,7 +80,7 @@
           newTodo.innerHTML = `
             <label class="todo__title">
               <input type="checkbox" class="todo__check" />
-              <p>${inputValue}</p>
+              <p>${escapeHtml(inputValue)}</p>
             </label>
             <button class="btn-delete"></button>
           `;
@@ -89,6 +89,16 @@
           document.querySelector(".todo__input").value = "";
         } else return;
       };
+
+      // 處理特殊字元
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
 
       // click 會新增事件
       document.querySelector(".todo__add").addEventListener("click", (e) => {
