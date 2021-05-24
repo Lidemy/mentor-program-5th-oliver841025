@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>餐廳資訊</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="wrapper">
+        <div class="navbar__site-name">Just A Bite!</div>
+        <ul class="navbar__list">
+          <li class="active"><a href="#">抽個大獎</a></li>
+          <li><a href="#">我要點餐</a></li>
+          <li><a href="#">查詢訂單</a></li>
+          <li><a href="#">常見問題</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="FAQ">
+      <div class="wrapper">
+        <div class="FAQ__title">
+          <h2 class="FAQ__content">FAQ - 常見問題</h2>
+        </div>
+
+        <article class="FAQ__article">
+          <div class="question">
+            <div class="question__title hide-answer">
+              <div>
+                <div class="question__number">Q1:</div>
+              </div>
+              <div class="question__block">
+                <div class="question__content">如何辦理退貨？</div>
+                <div class="question__answer">
+                  <p>
+                    顧客於商品送達的7天內皆可辦理線上退貨，在完成訂購後15分鐘系統即無法取消訂單。
+                    如您發現無法使用線上退貨申請時，請使用客服信箱或電話連繫客服中心辦理退貨。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question__title hide-answer">
+              <div>
+                <div class="question__number">Q2:</div>
+              </div>
+              <div class="question__block">
+                <div class="question__content">目前提供哪些付款方式？</div>
+                <div class="question__answer">
+                  <p>
+                    目前提供線上信用卡付款、貨到付款，以及超商取貨付款三種方式。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question__title hide-answer">
+              <div>
+                <div class="question__number">Q3:</div>
+              </div>
+              <div class="question__block">
+                <div class="question__content">線上刷卡如何操作呢？</div>
+                <div class="question__answer">
+                  <p>
+                    線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer__top">
+        <div class="wrapper">
+          <div class="footer__info">
+            <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+            <div>訂位專線：02-1314-5566</div>
+            <div>
+              營業時間：週一〜週五 09:00~18:00 /
+              週六、週日、國定假日（含連假）休息
+            </div>
+            <div>email：service@justabite.com.tw</div>
+          </div>
+          <div>
+            <div class="footer__site">Just A Bite!</div>
+            <div>Facebook / Instagram / Youtube</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        Copyright © 2020 Just A Bite All Rights Reserved.
+        咬一口股份有限公司版權所有
+      </div>
+    </footer>
+    <script>
+      document.querySelector(".FAQ__article").addEventListener("click", (e) => {
+        const ansElClass = e.target.parentNode.parentNode.classList;
+        const clickClass = e.target.classList;
+        if (
+          clickClass.contains("question__content") ||
+          clickClass.contains("question__number")
+        ) {
+          ansElClass.contains("hide-answer")
+            ? ansElClass.remove("hide-answer")
+            : ansElClass.add("hide-answer");
+        } else return;
+      });
+    </script>
+  </body>
+</html>

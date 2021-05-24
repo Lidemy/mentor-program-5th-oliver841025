@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+    <title>新拖延運動報名表單</title>
+  </head>
+  <body>
+    <form class="body__wrapper">
+      <div class="form">
+        <div class="wrapper">
+          <h1 class="title">新拖延運動報名表單</h1>
+          <div class="title__desc">
+            <p>活動日期：2020/12/10 ~ 2020/12/11</p>
+            <p>活動地點：台北市大安區新生南路二段1號</p>
+            <div class="must">* 必填</div>
+          </div>
+        </div>
+
+        <div class="wrapper">
+          <div class="name required hide-error hide-error">
+            <div class="sub__title">暱稱 </div>
+            <input name="name" class="input__space" type="text" placeholder="您的暱稱" />
+            <div class="error">請輸入暱稱</div>
+          </div>
+          <div class="email required hide-error">
+            <div class="sub__title">電子郵件 </div>
+            <input name="email" class="input__space" type="text"  placeholder="您的電子郵件" />
+            <div class="error">請輸入電子郵件</div>
+          </div>
+          <div class="phone required hide-error">
+            <div class="sub__title">手機號碼 </div>
+            <input name="phone" class="input__space" type="text"  placeholder="您的手機號碼" />
+            <div class="error">請輸入手機號碼</div>
+          </div>
+          <div class="type required hide-error">
+            <div class="sub__title">報名類型 </div>
+            <label>
+              <input 
+              type="radio"
+              name="option"
+              value="bed"
+            /> 躺在床上用想像力實作
+            </label>
+            <br /><br />
+            <label>
+              <input 
+              type="radio"
+              name="option"
+              value="floor"
+            /> 趴在地上滑手機找現成的
+            </label>
+            <div class="error">請選擇</div>
+          </div>
+          <div class="know required hide-error">
+            <div class="sub__title">你怎麼知道這個活動的？ </div>
+            <input name="know" class="input__space" type="text"  placeholder="您的回答" />
+            <div class="error">請輸入資訊</div>
+          </div>
+          <div class="other">
+            <div class="sub__title">其他 </div>
+            <p>對活動的一些建議</p>
+            <input name="answer" class="input__space" type="text"  placeholder="您的回答" />
+          </div>
+          <div class="submit">
+            <button type="submit">提交</button>
+            <p>請勿透過表單送出您的密碼。</p>
+          </div>
+        </div>
+    </form>
+    </div>
+    <footer class="footer">
+        <p>© 2020 © Copyright. All rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 沒問題就隱藏 .error，有問題就顯示
+        document.querySelector('form').addEventListener('submit', (e) => {
+            // 預防表單提交時更新頁面
+            e.preventDefault();
+            // 準備判斷表單有無錯誤
+            let hasError = false;
+            let isValid = 0;
+            let values= {};
+            // 選取每個 inputs
+            const inputs = document.querySelectorAll('.required input[type=text]');
+            for(let input of inputs){
+                if(!input.value){
+                    input.parentNode.classList.remove('hide-error');
+                    hasError = true;
+                    isValid--;
+                }else{
+                  values[input.name] = input.value;
+                    input.parentNode.classList.add('hide-error');
+                    isValid++;
+                }
+            }
+            // 對報名類型做個別處理
+            const elements = document.querySelectorAll('.required');
+            for(let element of elements){
+                const radios = document.querySelectorAll('input[type=radio]');
+                if(!radios.length) continue
+                for(let radio of radios){
+                    // 檢查 radios 裡面有沒有 radio 是 checked 的狀態
+                    let hasValue = [...radios].some(radio => radio.checked);
+                    if(!hasValue){
+                        radio.parentNode.parentNode.classList.remove('hide-error');
+                        hasError = true;
+                        isValid--;
+                    }else{
+                        radio.parentNode.parentNode.classList.add('hide-error');
+                        let r = document.querySelector('input[type=radio]:checked');
+                        isValid++;
+                        values[r.name] = r.value;
+                    }
+                }               
+            }
+            if(isValid === 14){
+              alert(JSON.stringify(values));
+            }else return;
+        })
+    </script>
+  </body>
+</html>
