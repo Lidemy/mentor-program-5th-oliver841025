@@ -84,7 +84,6 @@
             // 預防表單提交時更新頁面
             e.preventDefault();
             // 準備判斷表單有無錯誤
-            let hasError = false;
             let isValid = 0;
             let values= {};
             // 選取每個 inputs
@@ -92,7 +91,6 @@
             for(let input of inputs){
                 if(!input.value){
                     input.parentNode.classList.remove('hide-error');
-                    hasError = true;
                     isValid--;
                 }else{
                   values[input.name] = input.value;
@@ -110,7 +108,6 @@
                     let hasValue = [...radios].some(radio => radio.checked);
                     if(!hasValue){
                         radio.parentNode.parentNode.classList.remove('hide-error');
-                        hasError = true;
                         isValid--;
                     }else{
                         radio.parentNode.parentNode.classList.add('hide-error');
