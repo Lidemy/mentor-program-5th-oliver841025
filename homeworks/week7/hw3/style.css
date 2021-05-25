@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", MicrosoftJhengHei, sans-serif;
+  /* border: 1px solid red; */
+}
+.wrapper {
+  margin: 50px auto;
+  max-width: 450px;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 22px;
+  letter-spacing: 1.2px;
+  box-shadow: 0 0 20px rgb(199 197 197);
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #6c6c6c;
+  font-size: 30px;
+}
+.todo__input-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todo__input {
+  width: 350px;
+  padding: 8px 12px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  letter-spacing: 1.2px;
+  outline: transparent;
+  transition: 0.2s ease-in-out;
+}
+::placeholder {
+  padding-left: 10px;
+  color: #b4b4b4;
+}
+.todo__input:hover {
+  border: 1px solid #686868;
+}
+.todo__add {
+  border: 1px solid #ddd;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  margin-right: 5px;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+.todo__add:hover {
+  background: #868686;
+}
+.todo__add:before,
+.todo__add:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 1px;
+  background: #6c6c6c;
+  transition: 0.2s ease-in-out;
+}
+.todo__add:hover:before,
+.todo__add:hover:after {
+  background: white;
+}
+.todo__add:before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+.todo__add:after {
+  transform: translate(-50%, -50%);
+}
+.todo__hr {
+  border-bottom: 1px solid #ddd;
+  margin-top: 20px;
+}
+.todo__list {
+  list-style-type: none;
+  margin: 30px 20px 10px 20px;
+}
+.todo__title {
+  display: flex;
+  align-items: center;
+}
+.todo__check {
+  cursor: pointer;
+  margin-right: 12px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.todo {
+  position: relative;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+.todo__title {
+  flex: 1;
+  cursor: pointer;
+  padding: 0 10px;
+}
+.todo:hover {
+  background: rgb(235, 235, 235);
+}
+.todo__title p {
+  font-weight: 200;
+}
+/* 做與沒做  */
+input:checked + p {
+  text-decoration: line-through #da4141 2px;
+}
+.btn-delete {
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+.btn-delete:hover {
+  background: #868686;
+}
+.btn-delete:hover:before,
+.btn-delete:hover:after {
+  background: #e0e0e0;
+  transition: 0.2s ease-in-out;
+}
+.btn-delete:before,
+.btn-delete:after {
+  content: "";
+  background: #6c6c6c;
+  width: 20px;
+  height: 1px;
+  position: absolute;
+}
+.btn-delete:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.btn-delete:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}

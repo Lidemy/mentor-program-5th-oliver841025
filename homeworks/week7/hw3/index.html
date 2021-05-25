@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>TodoList</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>What's Next 🤔</h1>
+      <form class="todo__input-block">
+        <input
+          class="todo__input"
+          type="text"
+          placeholder="Let's Do Something Cool..."
+          minlength="1"
+          maxlength="48"
+        />
+        <button class="todo__add"></button>
+      </form>
+      <div class="todo__hr"></div>
+      <ul class="todo__list">
+        <li class="todo">
+          <label class="todo__title">
+            <input type="checkbox" class="todo__check" />
+            <p>eat an apple</p>
+          </label>
+          <button class="btn-delete"></button>
+        </li>
+
+        <li class="todo">
+          <label class="todo__title">
+            <input type="checkbox" class="todo__check" />
+            <p>write code</p>
+          </label>
+          <button class="btn-delete"></button>
+        </li>
+
+        <li class="todo">
+          <label class="todo__title">
+            <input type="checkbox" class="todo__check" checked />
+            <p>work out</p>
+          </label>
+          <button class="btn-delete"></button>
+        </li>
+
+        <li class="todo">
+          <label class="todo__title">
+            <input type="checkbox" class="todo__check" checked />
+            <p>feed dog</p>
+          </label>
+          <button class="btn-delete"></button>
+        </li>
+
+        <li class="todo">
+          <label class="todo__title">
+            <input type="checkbox" class="todo__check" />
+            <p>send postcards</p>
+          </label>
+          <button class="btn-delete"></button>
+        </li>
+      </ul>
+    </div>
+    <script>
+      const addTodos = () => {
+        const inputValue = document.querySelector(".todo__input").value;
+        if (inputValue.trim().length !== 0) {
+          const newTodo = document.createElement("li");
+          newTodo.classList.add("todo");
+          newTodo.innerHTML = `
+            <label class="todo__title">
+              <input type="checkbox" class="todo__check" />
+              <p>${escapeHtml(inputValue)}</p>
+            </label>
+            <button class="btn-delete"></button>
+          `;
+          document.querySelector(".todo__list").appendChild(newTodo);
+          // 清空輸入欄
+          document.querySelector(".todo__input").value = "";
+        } else return;
+      };
+
+      // 處理特殊字元
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      // click 會新增事件
+      document.querySelector(".todo__add").addEventListener("click", (e) => {
+        addTodos();
+        // 預防頁面更新
+        e.preventDefault();
+      });
+      // Enter 會新增事件
+      document
+        .querySelector(".todo__input")
+        .addEventListener("keypress", (e) => {
+          // 做不同瀏覽器的判斷
+          if (e.which === 13) addTodos();
+        });
+
+      // 刪除功能，使用事件代理
+      document.querySelector(".todo__list").addEventListener("click", (e) => {
+        const target = e.target;
+        // 移除 li
+        if (target.classList.contains("btn-delete")) {
+          target.parentNode.remove();
+        }
+      });
+      //
+    </script>
+  </body>
+</html>

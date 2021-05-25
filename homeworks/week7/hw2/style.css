@@ -1,0 +1,152 @@
+* {
+  font-family: Questrial, sans-serif;
+}
+.navbar {
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+}
+.navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 84px;
+  padding: 0 20px;
+  background: #ffff;
+}
+.wrapper {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 12px;
+}
+.navbar__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 18px;
+}
+.navbar__list li {
+  margin-left: 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.navbar__list li a {
+  text-decoration: none;
+  padding: 12px 24px;
+  display: block;
+  color: black;
+}
+.navbar__site-name {
+  font-size: 36px;
+  color: #489846;
+}
+.navbar__list li:hover {
+  background: #ff7286;
+}
+.active {
+  background: #ff7286;
+}
+.navbar__list li.active a,
+.navbar__list li:hover a {
+  color: #ffff;
+}
+
+.footer__bottom {
+  background: #35564b;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  font-size: 16px;
+}
+.footer__top {
+  background: #e8efee;
+}
+footer {
+  margin-top: 48px;
+}
+.footer__top .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.footer__site {
+  color: #489846;
+  font-size: 36px;
+}
+.footer__info div + div {
+  margin-top: 10px;
+}
+.section {
+  text-align: center;
+}
+.FAQ__title {
+  display: flex;
+  justify-content: center;
+}
+.FAQ__content {
+  border-left: #a6e2c0 8px solid;
+  padding-left: 10px;
+}
+.question__title {
+  display: flex;
+  margin: 40px 15vw;
+  padding: 0 0 15px 10px;
+  border-bottom: 1px solid #a6e2c0;
+  cursor: pointer;
+}
+.question__number {
+  color: #70b282;
+  margin-right: 10px;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.question__content {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.question__answer {
+  max-width: 768px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.question__block {
+  overflow: hidden;
+}
+.hide-answer {
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .navbar .wrapper {
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    height: 120px;
+    padding: 0;
+  }
+  .navbar__list {
+    display: flex;
+    width: 100%;
+  }
+  .navbar__list li {
+    text-align: center;
+    flex: 1;
+    border-radius: 0;
+    margin-left: 0;
+  }
+  .navbar__site-name {
+    margin-top: 10px;
+  }
+
+  .footer__info {
+    margin-right: 16px;
+  }
+  .footer__top .wrapper {
+    flex-direction: column-reverse;
+  }
+  .footer__info {
+    margin-right: 0;
+    margin-top: 16px;
+  }
+}
