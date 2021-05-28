@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>餐廳資訊</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="wrapper">
+        <div class="navbar__site-name">Just A Bite!</div>
+        <ul class="navbar__list">
+          <li class="active"><a href="#">抽個大獎</a></li>
+          <li><a href="#">我要點餐</a></li>
+          <li><a href="#">查詢訂單</a></li>
+          <li><a href="#">常見問題</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="prize__background">
+      <div class="prize__wrapper">
+        <div class="prize">
+          <h2>2020 夏日輕盈特賞！ 抽獎活動辦法</h2>
+          <ul>
+            <li>
+              <div>活動期間：</div>
+              <p>2020/06/01~2020/07/01</p>
+            </li>
+
+            <li>
+              <div>活動說明：</div>
+              <p>
+                今天老闆佛心來著決定給大家發獎勵，有看有機會，沒看只能幫QQ！只要在店內消費滿1000000元即有機會獲得
+                - 頭獎日本東京來回雙人遊！
+              </p>
+            </li>
+
+            <li>
+              <div>獎&nbsp;&nbsp;品：</div>
+              <p>
+                ❤ 頭獎一名：日本東京來回雙人遊(市價14990元)<br />
+                ❤ 貳獎三名：90 吋電視一台(市價5990元)<br />
+                ❤ 參獎十名：知名 YouTuber 簽名握手會入場券一張(市價1500元)
+              </p>
+            </li>
+          </ul>
+          <button class="btn-play" type="button" name="prize__submit">我要抽獎</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer__top">
+        <div class="wrapper">
+          <div class="footer__info">
+            <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+            <div>訂位專線：02-1314-5566</div>
+            <div>
+              營業時間：週一〜週五 09:00~18:00 /
+              週六、週日、國定假日（含連假）休息
+            </div>
+            <div>email：service@justabite.com.tw</div>
+          </div>
+          <div>
+            <div class="footer__site">Just A Bite!</div>
+            <div>Facebook / Instagram / Youtube</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        Copyright © 2020 Just A Bite All Rights Reserved.
+        咬一口股份有限公司版權所有
+      </div>
+    </footer>
+
+    <script>
+      const prize = document.querySelector(".prize__background");
+      const prizeHTML = prize.innerHTML;
+      const errorMsg = "系統不穩定，請再試一次😓";
+      const URL =
+        "https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery";
+
+      // 抽獎結果
+      const showPrizeResult = (myJson) => {
+        const prizeResult = myJson.prize;
+        const prizeChoices = {
+          FIRST: "恭喜你中頭獎了！日本東京來回雙人遊！",
+          SECOND: "二獎！90 吋電視一台！",
+          THIRD: "恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！",
+          NONE: "銘謝惠顧",
+        };
+
+        if (!prizeResult) return errorMsg;
+
+        prize.classList.add(prizeResult);
+        prize.innerHTML = `
+        <div class="prize__wrapper">
+            <div class="prize">
+                <h2>${prizeChoices[prizeResult]}</h2>       
+                <button class="btn-again" type="button" name="prize__submit">再抽一次</button> 
+            </div>
+        </div>
+        `;
+      };
+
+      // 重抽
+      const playAgain = () => {
+        prize.classList.remove("FIRST");
+        prize.classList.remove("SECOND");
+        prize.classList.remove("THIRD");
+        prize.classList.remove("NONE");
+        prize.innerHTML = prizeHTML;
+      }
+
+      // 監聽點擊
+      prize.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btn-play")) {
+          fetch(URL)
+            .then((response) => {
+                // 點擊成功就拿取資料
+                if (response.status >= 200 && response.status < 400) {
+                    return response.json()
+                //return response.text()
+              }
+              //錯誤處理
+              throw new Error(errorMsg);
+            })
+            .then((myJson) => showPrizeResult(myJson))
+            .catch((err) => {
+              alert(errorMsg);
+            });
+        } else if (e.target.classList.contains("btn-again")) playAgain();
+      });
+    </script>
+  </body>
+</html>
