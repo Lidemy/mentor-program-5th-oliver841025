@@ -23,7 +23,7 @@
         </div>
 
         <div class="wrapper">
-          <div class="name required hide-error hide-error">
+          <div class="name required hide-error ">
             <div class="sub__title">暱稱 </div>
             <input name="name" class="input__space" type="text" placeholder="您的暱稱" />
             <div class="error">請輸入暱稱</div>
@@ -118,8 +118,17 @@
                 }               
             }
             if(isValid === 14){
-              alert(JSON.stringify(values));
-            }else return;
+              alert(`妳好，報名資料如下：
+                暱稱： ${values.name}
+                電子郵件： ${values.email}
+                手機號碼： ${values.phone}
+                報名類型： ${values.option}
+                活動消息來源： ${values.know}
+              `
+              );
+            }else{
+              alert('請確實填寫表單內容');
+            }
         })
     </script>
   </body>

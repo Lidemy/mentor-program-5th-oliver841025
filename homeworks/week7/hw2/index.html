@@ -106,16 +106,15 @@
     </footer>
     <script>
       document.querySelector(".FAQ__article").addEventListener("click", (e) => {
-        const ansElClass = e.target.parentNode.parentNode.classList;
-        const clickClass = e.target.classList;
+        const answerElementStyle = e.target.parentNode.parentNode.classList;
+        const targetStyle = e.target.classList;
+        const hideAnswerClass = "hide-answer";
         if (
-          clickClass.contains("question__content") ||
-          clickClass.contains("question__number")
+          targetStyle.contains("question__content") ||
+          targetStyle.contains("question__number")
         ) {
-          ansElClass.contains("hide-answer")
-            ? ansElClass.remove("hide-answer")
-            : ansElClass.add("hide-answer");
-        } else return;
+          answerElementStyle.toggle(hideAnswerClass);
+        }
       });
     </script>
   </body>
