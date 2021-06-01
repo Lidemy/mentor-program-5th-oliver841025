@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Twitch</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="wrapper">
+          <div class="navbar__site-name">Twitch Top Games</div>
+          <ul class="navbar__list"></ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="games">
+        <div class="wrapper">
+          <h3></h3>
+          <p>Top 20 popular live streams sorted by current viewers</p>
+        </div>
+        <div class="live-game__block-background">
+          <div class="live-game__block">
+            <!-- content will be here by js -->
+
+            <!-- <div class="stream">
+              <img
+                src="https://static-cdn.jtvnw.net/previews-ttv/live_user_goes_x-640x360.jpg"
+              />
+              <div class="stream__data">
+                <div class="stream__avatar">
+                  <img
+                    src="https://static-cdn.jtvnw.net/jtv_user_pictures/1c3057f5-4620-48f1-bc0c-edcccd8c7960-profile_image-300x300.png"
+                  />
+                </div>
+                <div class="stream__intro">
+                  <div class="stream__title">goodgame</div>
+                  <div class="stream__channel">${stream.channel.name}</div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const TOP_GAMES_URL = "https://api.twitch.tv/kraken/games/top?limit=5";
+      const GAMES_STREAMS_URL = "https://api.twitch.tv/kraken/streams?game=";
+      const HEADERS = {
+        headers: {
+          Accept: "application / vnd.twitchtv.v5 + json",
+          "Client-ID": "cf2rjdklgkbltczqmcirnljp09ykz5",
+        },
+      };
+
+      const getGameList = (gameName) => {
+        fetch(TOP_GAMES_URL, HEADERS)
+          .then((response) => {
+            if (response.ok || response.status === 200) {
+              return response.json();
+            }
+          })
+          .then((myJson) => {
+            const games = myJson.top;
+            for (let game of games) {
+              let element = document.createElement("li");
+              element.innerText = game.game.name;
+              document.querySelector(".navbar__list").appendChild(element);
+            }
+            if (!document.querySelector(".wrapper h3").innerText) {
+              document.querySelector(".wrapper h3").innerText =
+                games[0].game.name;
+              getGamesStreams(games[0].game.name);
+            } else {
+              document.querySelector(".wrapper h3").innerText = gameName;
+            }
+          })
+          .catch((error) => console.log("error"));
+      };
+
+      const getGamesStreams = (targetGames, gameName) => {
+        //console.log(targetGames[0].game.name);
+        fetch(
+          GAMES_STREAMS_URL +
+            encodeURIComponent(targetGames || gameName) +
+            "&limit=9",
+          HEADERS
+        )
+          .then((response) => {
+            if (response.ok || response.status === 200) {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            //console.log(data.streams);
+            for (let stream of data.streams) {
+              //console.log(stream);
+              let element = document.createElement("div");
+              document.querySelector(".live-game__block").appendChild(element);
+              element.outerHTML = `
+                <div class="stream">
+              <img
+                src="${stream.preview.large}"
+              />
+              <div class="stream__data">
+                <div class="stream__avatar">
+                  <img
+                    src="${stream.channel.logo}"
+                  />
+                </div>
+                <div class="stream__intro">
+                  <div class="stream__title">${stream.channel.status}</div>
+                  <div class="stream__channel">${stream.channel.name}</div>
+                </div>
+              </div>
+            </div>
+              `;
+            }
+          });
+      };
+
+      document.querySelector(".navbar__list").addEventListener("click", (e) => {
+        if (e.target.tagName.toLowerCase() === "li") {
+          const gameName = e.target.innerText;
+          document.querySelector(".wrapper h3").innerText = gameName;
+          document.querySelector(".live-game__block").innerHTML = "";
+
+          document.querySelector(".navbar__list").innerHTML = "";
+          getGameList(gameName);
+          getGamesStreams(gameName);
+        }
+      });
+      getGameList();
+    </script>
+  </body>
+</html>
