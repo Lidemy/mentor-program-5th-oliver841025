@@ -1,0 +1,193 @@
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  /* border: 1px solid green; */
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 1px;
+  border-radius: 10px;
+}
+
+body {
+  background-color: rgb(70 255 80);
+}
+
+.warning {
+  position: fixed;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgb(233, 51, 51);
+  color: white;
+  border-radius: 0;
+}
+
+.comments__body {
+  margin: 60px auto;
+  max-width: 45vw;
+  border: 2px solid black;
+  background: white;
+  padding: 10px;
+}
+
+.title {
+  text-align: center;
+  color: rgb(199, 58, 255);
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+.wrapper div ~ div {
+  margin-top: 10px;
+}
+
+.wrapper textarea {
+  margin-top: 20px;
+  width: 40vw;
+  height: 30vh;
+  padding: 10px;
+}
+
+.btn-submit {
+  margin-top: 10px;
+  width: 40vw;
+  height: 40px;
+  background: rgb(199, 58, 255);
+  color: rgb(231, 231, 231);
+  transition: 0.2s;
+  border: none;
+}
+
+.btn-submit:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background: black;
+  color: white;
+}
+
+.btn-submit__block {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-submit__block input {
+  margin-left: 0;
+  border: none;
+}
+
+input[name="username"],
+input[name="password"],
+input[name="nickname"] {
+  border: 2px solid rgb(34, 34, 34);
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.contents {
+  padding: 10px;
+  margin: 30px 10px;
+}
+
+.content {
+  display: flex;
+}
+
+.content__avatar {
+  background: rgb(63, 63, 63);
+  margin-right: 10px;
+  min-width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.content__info p {
+  margin-top: 5px;
+}
+
+.content ~ .content {
+  margin-top: 30px;
+}
+
+hr {
+  max-width: 40vw;
+}
+
+.time {
+  color: rgb(190, 190, 190);
+  padding-left: 30px;
+}
+
+.errorMsg {
+  color: red;
+  margin-top: 10px;
+}
+
+.btn-board {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+  padding: 10px, 30px;
+  background: rgb(199, 58, 255);
+  text-decoration: none;
+  /* border: 2px solid black; */
+  align-items: center;
+  color: rgb(226, 226, 226);
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.btn-board:hover {
+  transform: scale(1.2);
+}
+
+.btn-board ~ .btn-board {
+  margin-left: 20px;
+}
+
+.btn-board__block h3 {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.btn-board__block {
+  display: flex;
+  justify-content: center;
+}
+
+.not-loggin__msg {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 0px 0;
+  color: rgb(199, 58, 255);
+}
+
+.wrapper input {
+  margin-top: 20px;
+  /* border: 2px solid rgb(34, 34, 34); */
+}
+
+input {
+  margin-left: 10px;
+  width: 25vw;
+}
