@@ -62,6 +62,7 @@ body {
   width: 40vw;
   height: 30vh;
   padding: 10px;
+  resize: none;
 }
 
 .btn-submit {
@@ -121,6 +122,7 @@ li {
 
 .content__info p {
   margin-top: 5px;
+  word-break: break-all;
 }
 
 .content ~ .content {
@@ -190,4 +192,24 @@ hr {
 input {
   margin-left: 10px;
   width: 25vw;
+}
+
+@media (max-width: 768px) {
+  .wrapper textarea {
+    width: 36vw;
+  }
+
+  .time {
+    font-size: 10px;
+  }
+
+  .btn-submit {
+    width: 36vw;
+  }
+
+  input[name="username"],
+  input[name="password"],
+  input[name="nickname"] {
+    width: 36vw;
+  }
 }

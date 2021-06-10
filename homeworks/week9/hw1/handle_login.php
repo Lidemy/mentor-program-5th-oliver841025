@@ -14,7 +14,7 @@
     }
     
 
-    $sql = sprintf("select * from chinghsuan_board_users where username='%s' and password='%s'", $username, $password);
+    $sql = sprintf("select * from chinghsuan_board_users where username='%s'", $username);
     
     $result = $conn->query($sql);
 
@@ -22,8 +22,13 @@
         die($conn->error);
     } 
 
-     
-    if($result->num_rows) { 
+    if($result->num_rows === 0) {
+        header("Location: login.php?errCode=2");
+        exit();
+    }
+
+    $row = $result->fetch_assoc();
+    if(password_verify($password, $row['password'])) { 
         // 建立 token 並儲存
         $_SESSION['username'] = $username;
         header('Location: ./index.php');
