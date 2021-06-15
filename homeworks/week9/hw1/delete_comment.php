@@ -3,19 +3,17 @@
     require_once("conn.php");
     require_once("utils.php");
 
-    $content = $_POST['content'];
+    $id = $_GET['id'];
+    $username = $_SESSION['username'];
     
-    if (empty($content)) {
+    if (empty($id)) {
         header('Location: ./index.php?errorCode=1');
         die($conn->error);
     }
     
-    $username = $_SESSION['username'];
-    $content = $_POST['content'];
-
-    $sql = "insert into chinghsuan_board_comments(username, content) values(?, ?)";
+    $sql = "update chinghsuan_board_comments set is_deleted=1 where id=? and username=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $username, $content);
+    $stmt->bind_param('is', $id, $username);
     $result = $stmt->execute();
 
 

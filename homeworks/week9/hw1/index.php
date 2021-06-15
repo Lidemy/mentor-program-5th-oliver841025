@@ -1,19 +1,38 @@
 <?php
     session_start();
     require_once("conn.php");
-    require_once('utils.php');
+    require_once("utils.php");
 
     $username = NULL;
+    $user = NULL;
+    $authority = NULL;
     if(!empty($_SESSION['username'])) {
         $username = $_SESSION['username'];
+        $row = getUserFromUsername($username);
+        $user = $row['username'];
+        $authority = $row['authority'];
+        $nickname = $row['nickname'];
     }
 
-    $sql ="select * from chinghsuan_board_comments order by id desc";
-    $result = $conn->query($sql);
+    $page = 1;
+    if(!empty($_GET['page'])){
+        $page = intval($_GET['page']);
+    }
+    $items_per_page = 5;
+    $offset = ($page - 1) * $items_per_page;
+
+    $stmt = $conn->prepare(
+        'select C.id as id, C.content as content, C.created_at as created_at, U.nickname as nickname, U.username as username from chinghsuan_board_comments as C left join chinghsuan_board_users as U on C.username = U.username where is_deleted IS NULL order by C.id desc limit ? offset ?'
+    );
+    $stmt->bind_param('ii', $items_per_page, $offset);    
+    $result = $stmt->execute();
     if(!$result) {
         die('Error:' . $conn->error);
     }
+    $result = $stmt->get_result();
+    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,19 +46,28 @@
 </head>
 <body>
     <header class="warning">Please DO NOT type in your real password or username !!!</header>
-
     <main class="comments__body">
         <h2 class="title">Comment</h2>
+        
         <div class="btn-board__block">
             <?php if(!$username) { ?>
                 <a class="btn-board" href="login.php">Login</a>
                 <a class="btn-board" href="register.php">Register</a>
             <?php } else { ?>
                 <a class="btn-board" href="logout.php">Logout</a>
-                <h3>Hello！<?php echo $username; ?></h3>
+                <h3>Hello！<?php echo $nickname; ?></h3> <span><?php if(!empty($authority) && $authority === 'admin') { ?>
+                <button class="admin-only_btn" ><a href="admin.php">admin page</a></button></span>
+            <?php } ?>
+                <form class="wrapper" method="POST" action="update_user.php"><span class="update_nickname">update nickname</span>
+                    <div class="hide new_nickname_block">
+                        <span>new nickname:</span>
+                        <input class="new_nickname" type="text" name="nickname" />
+                        <input class="btn-submit__nickname" type="submit" value="enter"/>
+                    </div>
+                </form>
             <?php } ?>
         </div>
-        <?php if($username) { ?>
+        <?php if($username && $authority !== 'blocked_user') { ?>
             <form class="wrapper" method="POST" action="handle_add_comment.php">
                 <?php
                     if(!empty($_GET['errorCode'])) {
@@ -51,12 +79,15 @@
                         }
                     }
                 ?>
+
                 <textarea name='content' class="comment" row="20" placeholder="Wanna say something...?"></textarea>
                 <div class="btn-submit__block">
                     <input class="btn-submit" name="btn-submit" type="submit" value="submit"></input>
                 </div>
             </form>
-            <hr />
+            <?php } else if($username && $authority === 'blocked_user') { ?>
+                <h3 class="not-loggin__msg">I am sorry, you are blocked</h3>
+                <hr />
         <?php } else { ?>
             <h3 class="not-loggin__msg">Please Login To Leave Messages</h3>
             <hr />
@@ -67,12 +98,51 @@
                     <li class="content">
                         <div class="content__avatar"></div>
                         <div class="content__info">
-                            <div class="author"><?php echo $row['nickname'] ?><span class="time"><?php echo $row['created_at'] ?></span></div>
-                            <p><?php echo $row['content'] ?></p>
+                            <div class="author"><?php echo escape($row['nickname']) ?>(@<?php echo escape($row['username']) ?>)
+                            <span class="time"><?php echo escape($row['created_at']) ?></span> 
+                            <?php if($row['username'] === $username || $authority === 'admin') { ?>
+                                <a href="update_comment.php?id=<?php echo $row['id'] ?>"> edit</a>
+                                <a href="delete_comment.php?id=<?php echo $row['id'] ?>"> delete</a>
+                            <?php } ?>
+                            </div>
+                            <p><?php echo escape($row['content']) ?></p>
                         </div>
                     </li>
             <?php } ?>
         </ul>
+        <hr />
+        <?php 
+            $stmt = $conn->prepare(
+                'select count(id) as count from chinghsuan_board_comments where is_deleted IS NULL'
+            );
+            $result = $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $count = $row['count'];
+            $total_page = ceil($count / $items_per_page);
+         ?>
+        <div class="page-info">
+            <span>There are <?php echo $count ?> comments, page:</span>
+            <span><?php echo $page ?> / <?php echo $total_page ?></span>
+        </div>
+        <div class="paginator">
+            <?php if($page != 1){ ?>
+                <a href="index.php?page=1">Home Page</a>
+                <a href="index.php?page=<?php echo $page - 1?>">Last</a>
+            <?php } ?>
+            <?php if($page != $total_page){ ?>
+                <a href="index.php?page=<?php echo $total_page ?>">The Last Page</a>
+                <a href="index.php?page=<?php echo $page + 1?>">Next</a>
+            <?php } ?>
+        </div>
     </main>
+    <script>
+        const btn = document.querySelector(".update_nickname");
+
+        btn.addEventListener('click', function() {
+            const form = document.querySelector('.new_nickname_block');
+            form.classList.toggle('hide');
+        })
+    </script>
 </body>
 </html>
