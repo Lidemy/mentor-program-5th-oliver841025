@@ -15,6 +15,7 @@ p {
   font-family: "Nunito", sans-serif;
   letter-spacing: 1px;
   border-radius: 10px;
+  list-style: none;
 }
 
 body {
@@ -157,6 +158,7 @@ hr {
   color: rgb(226, 226, 226);
   transition: 0.2s;
   font-weight: 600;
+  margin-left: 20px;
 }
 
 .btn-board:hover {
@@ -170,11 +172,13 @@ hr {
 .btn-board__block h3 {
   margin-left: 20px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .btn-board__block {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .not-loggin__msg {
@@ -185,13 +189,95 @@ hr {
 }
 
 .wrapper input {
-  margin-top: 20px;
+  margin-top: 0px;
+  border: 1px solid black;
   /* border: 2px solid rgb(34, 34, 34); */
 }
 
 input {
   margin-left: 10px;
   width: 25vw;
+}
+
+input[name="btn-submit"] {
+  border: none;
+  margin-top: 20px;
+}
+
+input[class="new_nickname"] {
+  margin-top: 0;
+  width: 15vw;
+}
+
+.new_nickname_block {
+  display: flex;
+  margin-top: 10px;
+}
+
+input[class="btn-submit__nickname"] {
+  width: 5vw;
+  background: rgb(199, 58, 255);
+  color: rgb(231, 231, 231);
+  border: none;
+  cursor: pointer;
+}
+
+.update_nickname {
+  background: rgb(199, 58, 255);
+  color: rgb(231, 231, 231);
+  padding: 5px;
+  font-size: 8px;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.page-info {
+  text-align: center;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.paginator a {
+  text-decoration: none;
+  color: white;
+  border: none;
+  background: rgb(199, 58, 255);
+  padding: 5px 8px;
+  margin-left: 10px;
+  font-size: 10px;
+}
+
+.admin-only_btn,
+.btn-update_auth {
+  background: rgb(199, 58, 255);
+  padding: 5px 8px;
+  margin-left: 20px;
+  border: none;
+}
+
+.admin-only_btn a,
+.btn-update_auth a,
+.btn-update_auth {
+  font-size: 10px;
+  color: rgb(231, 231, 231);
+  list-style: none;
+  text-decoration: none;
+}
+
+.admin-only_btn:hover,
+.btn-update_auth:hover {
+  cursor: pointer;
+}
+
+.auth_select_block {
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {

@@ -4,18 +4,17 @@
     require_once("utils.php");
 
     $content = $_POST['content'];
-    
+    $id = $_POST['id'];
+    $username = $_SESSION['username'];
+
     if (empty($content)) {
-        header('Location: ./index.php?errorCode=1');
+        header('Location: ./index.php?errorCode=1&id='.$id);
         die($conn->error);
     }
     
-    $username = $_SESSION['username'];
-    $content = $_POST['content'];
-
-    $sql = "insert into chinghsuan_board_comments(username, content) values(?, ?)";
+    $sql = "update chinghsuan_board_comments set content=? where id=? and username=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $username, $content);
+    $stmt->bind_param('sis', $content, $id, $username);
     $result = $stmt->execute();
 
 
