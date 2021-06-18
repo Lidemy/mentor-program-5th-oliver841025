@@ -1,23 +1,20 @@
 <?php 
   session_start();
   require_once('conn.php');
+  require_once('utils.php');
   
   // 從 session 取出 username 
   $username = $_SESSION['username'];
   
-  // 先從資料庫撈出所有資訊
-  $sql = 'SELECT * FROM chinghsuan_blog_users WHERE username=?';
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param('s', $username);
-  $result = $stmt->execute();
-  $result = $stmt->get_result();
-  $row = $result->fetch_assoc();
-
-  // 從資料庫取出權限
-  $authority = $row['authority'];
-
+  // 先從使用者資料庫撈出權限
+  $authority = getDataFromUsername($username)['authority'];
+  
+  // 檢查權限
+  if(!$username || $authority !== 'admin'){
+    header('Location: index.php');
+    die();
+  }
 ?>
-
 <!DOCTYPE html>
 
 <html>

@@ -1,6 +1,15 @@
 <?php 
   session_start();
   require_once('conn.php');
+  require_once('utils.php');
+
+  $username = $_SESSION['username'];
+  $authority = getDataFromUsername($username)['authority'];
+  
+  if(!$username || $authority !== 'admin'){
+    header('Location: index.php');
+    die();
+  }
   
   // GET 拿丟過來的 id
   $id = $_GET['id'];

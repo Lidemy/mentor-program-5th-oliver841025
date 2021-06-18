@@ -2,7 +2,15 @@
 // 先載入該載的
   session_start();
   require_once("conn.php");
-  // require_once("utils.php");
+  require_once('utils.php');
+
+  $username = $_SESSION['username'];
+  $authority = getDataFromUsername($username)['authority'];
+  
+  if(!$username || $authority !== 'admin'){
+    header('Location: index.php');
+    die();
+  }
 
   // 拿 GET 過來的 id
   $id = $_GET['id'];
