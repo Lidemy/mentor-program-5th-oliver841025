@@ -5,16 +5,15 @@
 
     $content = $_POST['content'];
     $id = $_POST['id'];
-    $username = $_SESSION['username'];
-
+    
     if (empty($content)) {
         header('Location: ./index.php?errorCode=1&id='.$id);
         die($conn->error);
     }
     
-    $sql = "update chinghsuan_board_comments set content=? where id=? and username=?";
+    $sql = "update chinghsuan_board_comments set content=? where id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sis', $content, $id, $username);
+    $stmt->bind_param('si', $content, $id);
     $result = $stmt->execute();
 
 

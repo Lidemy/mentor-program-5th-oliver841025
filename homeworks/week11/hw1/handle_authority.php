@@ -21,7 +21,7 @@
     if(!$result) {
         die('Error: ' . $conn->error);
     } 
-    
+
     header("Location: admin.php");
     
 ?>

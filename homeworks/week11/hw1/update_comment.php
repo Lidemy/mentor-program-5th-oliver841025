@@ -10,13 +10,12 @@
         $user = getUserFromUsername($username);
     }
 
-    $username = $_SESSION['username'];
     $id = $_GET['id'];
     $stmt = $conn->prepare(
-        'select * from chinghsuan_board_comments where id=? and username=?'
+        'select * from chinghsuan_board_comments where id=?'
     );
 
-    $stmt->bind_param("is", $id, $username);
+    $stmt->bind_param("i", $id);
 
     $result = $stmt->execute();
     if(!$result) {
