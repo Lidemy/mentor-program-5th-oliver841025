@@ -16,7 +16,7 @@
     $username = $_SESSION['username'];
 
     // 取得 users 資料
-    $sql = "select * from chinghsuan_board_users";
+    $sql = "SELECT * FROM chinghsuan_board_users";
     $stmt = $conn->prepare($sql);
     $result = $stmt->execute();
     if(!$result) {
@@ -53,8 +53,8 @@
         <?php while($row = $result->fetch_assoc()) { ?>
             <form class="auth_select_block" method="POST" action="handle_authority.php">
                 <div>
-                    (@<?php echo $row['username'] ?>)
-                    <?php echo $row['nickname'] ?>
+                    (@<?php echo escape($row['username']) ?>)
+                    <?php echo escape($row['nickname']) ?>
                     <select name="authority">
                     <!-- option 加上 value 才能傳到後端 -->
                         <option value="admin" <?php echo $row['authority'] === 'admin' ? 'selected' : '' ?>>master admin</option>

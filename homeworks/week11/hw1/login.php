@@ -1,3 +1,8 @@
+<?php
+    require_once('conn.php');
+    require_once('utils.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

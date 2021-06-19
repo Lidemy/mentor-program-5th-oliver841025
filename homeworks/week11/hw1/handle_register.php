@@ -16,10 +16,10 @@
     }
     
 
-    $sql = sprintf("insert into chinghsuan_board_users(nickname, username, password) values('%s', '%s', '%s')", $nickname, $username, $password);
-    
-    $result = $conn->query($sql);
-
+    $sql = "INSERT INTO chinghsuan_board_users(username, password, nickname) VALUES(?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sss', $username, $password, $nickname);
+    $result = $stmt->execute();
     if(!$result) {
         $code = $conn->errno;
         if($code === 1062){

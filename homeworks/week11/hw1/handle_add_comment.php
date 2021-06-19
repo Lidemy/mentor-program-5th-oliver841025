@@ -13,7 +13,7 @@
     $username = $_SESSION['username'];
     $content = $_POST['content'];
 
-    $sql = "insert into chinghsuan_board_comments(username, content) values(?, ?)";
+    $sql = "INSERT INTO chinghsuan_board_comments(username, content) VALUES(?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ss', $username, $content);
     $result = $stmt->execute();

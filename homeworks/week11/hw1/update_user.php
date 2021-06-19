@@ -10,12 +10,10 @@
     }
     
     $username = $_SESSION['username'];
-    $nickname = $_POST['nickname'];
-    $sql = "update chinghsuan_board_users set nickname=? where username=?";
+    $sql = "UPDATE chinghsuan_board_users SET nickname=? WHERE username=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ss', $nickname, $username);
     $result = $stmt->execute();
-
 
     if(!$result) {
         die('Error: ' . $conn->error);

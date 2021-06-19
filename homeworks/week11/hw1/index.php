@@ -22,7 +22,7 @@
     $offset = ($page - 1) * $items_per_page;
 
     $stmt = $conn->prepare(
-        'select C.id as id, C.content as content, C.created_at as created_at, U.nickname as nickname, U.username as username from chinghsuan_board_comments as C left join chinghsuan_board_users as U on C.username = U.username where is_deleted IS NULL order by C.id desc limit ? offset ?'
+        'SELECT C.id AS id, C.content AS content, C.created_at AS created_at, U.nickname AS nickname, U.username AS username FROM chinghsuan_board_comments AS C LEFT JOIN chinghsuan_board_users AS U ON C.username = U.username WHERE is_deleted IS NULL ORDER BY C.id DESC LIMIT ? OFFSET ?'
     );
     $stmt->bind_param('ii', $items_per_page, $offset);    
     $result = $stmt->execute();
@@ -55,7 +55,7 @@
                 <a class="btn-board" href="register.php">Register</a>
             <?php } else { ?>
                 <a class="btn-board" href="logout.php">Logout</a>
-                <h3>Hello！<?php echo $nickname; ?></h3> <span><?php if(!empty($authority) && $authority === 'admin') { ?>
+                <h3>Hello！<?php echo escape($nickname) ?></h3> <span><?php if(!empty($authority) && $authority === 'admin') { ?>
                 <button class="admin-only_btn" ><a href="admin.php">admin page</a></button></span>
             <?php } ?>
                 <form class="wrapper" method="POST" action="update_user.php"><span class="update_nickname">update nickname</span>
@@ -113,7 +113,7 @@
         <hr />
         <?php 
             $stmt = $conn->prepare(
-                'select count(id) as count from chinghsuan_board_comments where is_deleted IS NULL'
+                'SELECT count(id) AS count FROM chinghsuan_board_comments WHERE is_deleted IS NULL'
             );
             $result = $stmt->execute();
             $result = $stmt->get_result();

@@ -12,7 +12,7 @@
 
     $id = $_GET['id'];
     $stmt = $conn->prepare(
-        'select * from chinghsuan_board_comments where id=?'
+        'SELECCT * FROM chinghsuan_board_comments WHERE id=?'
     );
 
     $stmt->bind_param("i", $id);

@@ -11,11 +11,10 @@
         die($conn->error);
     }
     
-    $sql = "update chinghsuan_board_comments set content=? where id=?";
+    $sql = "UPDATE chinghsuan_board_comments SET content=? WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('si', $content, $id);
     $result = $stmt->execute();
-
 
     if(!$result) {
         die('Error: ' . $conn->error);

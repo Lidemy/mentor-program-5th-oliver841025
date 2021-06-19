@@ -11,7 +11,7 @@
         die($conn->error);
     }
     
-    $sql = "update chinghsuan_board_comments set is_deleted=1 where id=? and username=?";
+    $sql = "UPDATE chinghsuan_board_comments SET is_deleted=1 WHERE id=? and username=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('is', $id, $username);
     $result = $stmt->execute();
