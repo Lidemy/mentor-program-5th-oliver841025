@@ -14,11 +14,14 @@
   // GET 拿丟過來的 id
   $id = $_GET['id'];
   
-  // 先從資料庫撈出所有資訊
+  // 先從文章資料庫撈出所有資訊
   $sql = 'SELECT * FROM chinghsuan_blog_articles WHERE id=?';
   $stmt = $conn->prepare($sql);
   $stmt->bind_param('i', $id);
   $result = $stmt->execute();
+  if(!$result){
+    die($conn->error);
+  }
   $result = $stmt->get_result();
   $row = $result->fetch_assoc();
 
@@ -26,6 +29,16 @@
   $title = $row['title'];
   $content = $row['content'];
   $category = $row['category'];
+
+  
+  // 從分類資料庫撈出所有資訊
+  $sql = 'SELECT * FROM chinghsuan_blog_categories';
+  $stmt = $conn->prepare($sql);
+  $result = $stmt->execute();
+  if(!$result){
+    die($conn->error);
+  }
+  $result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -94,23 +107,11 @@
           </div>
           <div class="new-post_select">
             <select name="category">
-              <option value="<?php $category ?>"><?php echo $category ?></option>
-              <?php if($category === 'tech'){ ?>
-                <option value="music">music</option>
-                <option value="politic">politic</option>
-                <option value="diary">diary</option>
-              <?php }else if($category === 'music'){ ?>
-                <option value="tech">tech</option>
-                <option value="politic">politic</option>
-                <option value="diary">diary</option>
-              <?php }else if($category === 'politic'){ ?>
-                <option value="tech">tech</option>
-                <option value="music">music</option>
-                <option value="diary">diary</option>
-              <?php }else if($category === 'diary'){ ?>
-                <option value="tech">tech</option>
-                <option value="music">music</option>
-                <option value="politic">politic</option>
+              <option value="">請選擇文章分類</option>
+              <?php while ($result_category = $result->fetch_assoc()){ ?>
+                <option value="<?php echo $result_category['name'] ?>"<?php echo $category === $result_category['name'] ? 'selected' : '' ?>>
+                  <?php echo $result_category['name'] ?>
+                </option>
               <?php } ?>
             </select>
           </div>
