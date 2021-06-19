@@ -3,6 +3,11 @@
     require_once("conn.php");
     require_once("utils.php");
 
+    $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
+    
+    hasPermission($username, $authority);
+
     $nickname = $_POST['nickname'];
     if (empty($nickname)) {
         header('Location: ./index.php?errorCode=1');

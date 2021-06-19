@@ -4,6 +4,11 @@
   require_once("conn.php");
   require_once("utils.php");
 
+  $username = $_SESSION['username'];
+  $authority = getDataFromUsername($username)['authority'];
+  
+  isAdmin($username, $authority);
+
   // 拿傳過來的 title, content, category, id
   $id = $_POST['id'];
   $title = $_POST['title'];

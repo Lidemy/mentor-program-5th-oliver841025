@@ -6,10 +6,7 @@
   $username = $_SESSION['username'];
   $authority = getDataFromUsername($username)['authority'];
   
-  if(!$username || $authority !== 'admin'){
-    header('Location: index.php');
-    die();
-  }
+  isAdmin($username, $authority);
   
   // GET 拿丟過來的 id
   $id = $_GET['id'];
@@ -103,20 +100,20 @@
         ?>
         <form method="POST" action="handle_update_article.php" >
           <div class="input__wrapper">
-            <input class="input__field" type="text" name="title" value='<?php echo $title ?>'/>
+            <input class="input__field" type="text" name="title" value='<?php echo escape($title) ?>'/>
           </div>
           <div class="new-post_select">
             <select name="category">
               <option value="">請選擇文章分類</option>
               <?php while ($result_category = $result->fetch_assoc()){ ?>
-                <option value="<?php echo $result_category['name'] ?>"<?php echo $category === $result_category['name'] ? 'selected' : '' ?>>
-                  <?php echo $result_category['name'] ?>
+                <option value="<?php echo escape($result_category['name']) ?>"<?php echo escape($category === $result_category['name'] ? 'selected' : '') ?>>
+                  <?php echo escape($result_category['name']) ?>
                 </option>
               <?php } ?>
             </select>
           </div>
           <div class="input__wrapper">
-            <textarea class="input__field" type="text" name="content" rows="10"><?php echo $content ?></textarea>
+            <textarea class="input__field" type="text" name="content" rows="10"><?php echo escape($content) ?></textarea>
           </div>
           <input class="input__field" type="hidden" name="id" value='<?php echo $id ?>'/>
           <button class="btn-add_post" type='submit'>提交</button>

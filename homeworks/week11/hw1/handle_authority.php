@@ -4,10 +4,8 @@
     require_once("utils.php");
 
     //檢查訪問者權限
-    if(empty($_SESSION['username'])) {
-        header("Location: index.php");
-        die();
-    }
+    $authority = getUserFromUsername($username)['authority'];
+    isAdmin($username, $authority);
 
     $id = $_POST['id'];
     $authority = $_POST['authority'];

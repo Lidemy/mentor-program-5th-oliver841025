@@ -4,9 +4,6 @@
     require_once("conn.php");
     require_once("utils.php");
 
-    $username = NULL;
-    $authority = NULL;
-    
     // 確認身份不為空
     if(empty($_SESSION['username'])) {
         header("Location: index.php");
@@ -23,13 +20,12 @@
         die('資料獲取失敗' . $conn->error);
     }
     $result = $stmt->get_result();
-    $authority = getUserFromUsername($username)['authority'];
+
+    $row = getUserFromUsername($username);
+    $authority = $row['authority'];
 
     // 驗證身份
-    if($authority !== 'admin') {
-        header("Location: index.php");
-        die();
-    }
+    isAdmin($username, $authority);
 ?>
 
 

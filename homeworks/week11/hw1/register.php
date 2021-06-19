@@ -1,3 +1,17 @@
+<?php
+    session_start();
+    require_once('conn.php');
+    require_once('utils.php');
+
+    $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
+    
+    if($username || $authority){
+        header('Location: index.php');
+        die();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +44,9 @@
                         echo '<h2 class="errorMsg">' . $msg . '</h2>';
                     } else if($errorCode === '2') {
                         $msg = 'This account had been used';
+                        echo '<h2 class="errorMsg">' . $msg . '</h2>';
+                    } else if($errorCode === '3') {
+                        $msg = 'Do Not Use Special Chars';
                         echo '<h2 class="errorMsg">' . $msg . '</h2>';
                     }
                 }

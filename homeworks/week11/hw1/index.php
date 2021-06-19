@@ -22,7 +22,17 @@
     $offset = ($page - 1) * $items_per_page;
 
     $stmt = $conn->prepare(
-        'SELECT C.id AS id, C.content AS content, C.created_at AS created_at, U.nickname AS nickname, U.username AS username FROM chinghsuan_board_comments AS C LEFT JOIN chinghsuan_board_users AS U ON C.username = U.username WHERE is_deleted IS NULL ORDER BY C.id DESC LIMIT ? OFFSET ?'
+        'SELECT 
+            C.id AS id, C.content AS content, C.created_at AS created_at, 
+            U.nickname AS nickname, U.username AS username 
+        FROM chinghsuan_board_comments AS C 
+        LEFT JOIN chinghsuan_board_users AS U 
+            ON C.username = U.username 
+        WHERE is_deleted IS NULL 
+        ORDER BY 
+            C.id DESC 
+        LIMIT ? 
+        OFFSET ?'
     );
     $stmt->bind_param('ii', $items_per_page, $offset);    
     $result = $stmt->execute();
@@ -75,6 +85,9 @@
                         $msg="";
                         if($errorCode = '1') {
                             $msg = 'Information Incomplete';
+                            echo '<h2 class="errorMsg">' . $msg . '</h2>';
+                        }else if($errorCode = '2'){
+                            $msg = 'you do not have permission';
                             echo '<h2 class="errorMsg">' . $msg . '</h2>';
                         }
                     }

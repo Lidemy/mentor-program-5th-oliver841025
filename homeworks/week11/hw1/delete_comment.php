@@ -5,13 +5,16 @@
 
     $id = $_GET['id'];
     $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
     
+    hasPermission($username, $authority);
+
     if (empty($id)) {
         header('Location: ./index.php?errorCode=1');
         die($conn->error);
     }
     
-    $sql = "UPDATE chinghsuan_board_comments SET is_deleted=1 WHERE id=? and username=?";
+    $sql = "UPDATE chinghsuan_board_comments SET is_deleted=1 WHERE id=? AND username=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('is', $id, $username);
     $result = $stmt->execute();

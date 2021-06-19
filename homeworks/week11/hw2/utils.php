@@ -13,6 +13,20 @@
     return $row = $result->fetch_assoc();
   }
   
+  function isAdmin($username, $authority){
+    if(!$username || $authority !== 'admin'){
+      header('Location: index.php');
+      die();
+    }
+  }
+
+  function hasPermission($username, $authority){
+    if($username || $authority){
+      header('Location: index.php');
+      die();
+    }
+  }
+
   function escape($str) {
     return htmlspecialchars($str, ENT_QUOTES);
   }

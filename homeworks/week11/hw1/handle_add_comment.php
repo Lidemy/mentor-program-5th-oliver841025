@@ -4,13 +4,20 @@
     require_once("utils.php");
 
     $content = $_POST['content'];
-    
+
+    $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
+
+    if(!$username || $authority === 'blocked_user'){
+        header('Location: index.php');
+        die();
+    }
+
     if (empty($content)) {
         header('Location: ./index.php?errorCode=1');
         die($conn->error);
     }
     
-    $username = $_SESSION['username'];
     $content = $_POST['content'];
 
     $sql = "INSERT INTO chinghsuan_board_comments(username, content) VALUES(?, ?)";
