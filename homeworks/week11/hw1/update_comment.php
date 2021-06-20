@@ -3,6 +3,11 @@
     require_once("conn.php");
     require_once("utils.php");
 
+    $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
+    
+    hasPermission($username, $authority);
+
     $username = NULL;
     $user = NULL;
     if(!empty($_SESSION['username'])) {
@@ -11,12 +16,8 @@
     }
 
     $id = $_GET['id'];
-    $stmt = $conn->prepare(
-        'SELECCT * FROM chinghsuan_board_comments WHERE id=?'
-    );
-
+    $stmt = $conn->prepare('SELECT * FROM chinghsuan_board_comments WHERE id=?');
     $stmt->bind_param("i", $id);
-
     $result = $stmt->execute();
     if(!$result) {
         die('Error:' . $conn->error);

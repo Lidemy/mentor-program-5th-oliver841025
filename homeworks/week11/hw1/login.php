@@ -1,6 +1,17 @@
 <?php
+    session_start();
     require_once('conn.php');
     require_once('utils.php');
+
+    $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
+    
+    // 已登入者不能再登入 
+    if($username || $authority){
+        header('Location: index.php');
+        die();
+    }
+
 ?>
 
 <!DOCTYPE html>

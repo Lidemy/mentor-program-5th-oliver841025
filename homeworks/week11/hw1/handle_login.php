@@ -1,7 +1,16 @@
 <?php
     session_start();
     require_once("conn.php");
-    // require_once("utils.php");
+    require_once("utils.php");
+
+    $username = $_SESSION['username'];
+    $authority = getUserFromUsername($username)['authority'];
+    
+    // 已登入者不能再登入 
+    if($username || $authority){
+        header('Location: index.php');
+        die();
+    }
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -12,7 +21,6 @@
         header('Location: ./login.php?errorCode=1');
         die($conn->error);
     }
-    
 
     $sql = "SELECT * FROM chinghsuan_board_users WHERE username=?";
     $stmt = $conn->prepare($sql);

@@ -7,10 +7,7 @@
   $username = $_SESSION['username'];
   $authority = getDataFromUsername($username)['authority'];
   
-  if(!$username || $authority !== 'admin'){
-    header('Location: index.php');
-    die();
-  }
+  isAdmin($username, $authority);
 
   // 拿 GET 過來的 id
   $id = $_GET['id'];
