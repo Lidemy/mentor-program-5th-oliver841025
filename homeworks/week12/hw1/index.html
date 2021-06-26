@@ -87,6 +87,10 @@
             </div>
           `;
         if (isPrepend) {
+          if (!comment.nickname || !comment.content) {
+            alert("please check your input");
+            return;
+          }
           wrapper.prepend(commentHTML);
           $.ajax({
             type: "POST",
