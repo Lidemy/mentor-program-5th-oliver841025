@@ -1,0 +1,176 @@
+* {
+  /* border: 1px solid black; */
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+ul,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 84px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar__list {
+  display: flex;
+  list-style: none;
+  font-size: 18px;
+  transition: 0.2s ease-in-out;
+}
+
+.navbar__list li {
+  padding: 35px 15px 35px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.navbar__list > li:hover {
+  background: rgb(94, 94, 94);
+  color: white;
+}
+
+.navbar__site-name {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.games {
+  background: rgb(213, 17, 231);
+}
+
+.wrapper {
+  padding-top: 15px;
+}
+
+.games h3,
+.games p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  color: white;
+  font-weight: 600;
+}
+
+.live-game__block {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 120px 0;
+  width: 80vw;
+}
+
+.live-game__block-background {
+  display: flex;
+  justify-content: center;
+}
+
+.live-game {
+  height: 39vh;
+  width: 20vw;
+  margin: 10px 0;
+  position: relative;
+}
+
+.stream {
+  width: 300px;
+  background: #333;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.9;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.stream:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.stream img {
+  width: 100%;
+}
+
+.stream__data {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.stream__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+  min-width: 64px;
+}
+
+.stream__avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.stream__intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.stream__title {
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .navbar__list li {
+    padding: 20px 15px;
+    margin-top: 14px;
+  }
+
+  .live-game__block {
+    width: 100vw;
+  }
+
+  .stream {
+    width: 200px;
+  }
+
+  .stream__avatar {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+  }
+
+  .stream__title {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+  .stream__channel {
+    font-size: 12px;
+  }
+}
