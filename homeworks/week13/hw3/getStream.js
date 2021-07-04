@@ -11,8 +11,8 @@ const HEADERS = {
 let isFirstVisit = true;
 
 // top 5 games 放到 navbar 上
-function addStreamsToNavbar(myJson, gameName) {
-  const games = myJson.top;
+function addStreamsToNavbar(data, gameName) {
+  const games = data.top;
 
   for (let game of games) {
     let element = document.createElement("li");
@@ -53,8 +53,8 @@ function addStreamsToContent(data) {
   }
 }
 
-function addTopGamesStreamsToContent(myJson) {
-  myJson.top.forEach((stream) => {
+function addTopGamesStreamsToContent(data) {
+  data.top.forEach((stream) => {
     let element = document.createElement("div");
     document.querySelector(".live-game__block").appendChild(element);
     element.outerHTML = `
@@ -72,25 +72,19 @@ function addTopGamesStreamsToContent(myJson) {
   });
 }
 
-function getGameStreamsAPI(cb) {
-  fetch(TOP_GAMES_URL, HEADERS)
-    .then((response) => {
-      return response.json();
-    })
-    .then((myJson) => {
-      return cb(myJson);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+// 有了 Promise 就不會有 callback，除非用的 library 不支援
+async function getGameStreamsAPI() {
+  const response = await fetch(TOP_GAMES_URL, HEADERS);
+  const data = await response.json();
+  return data;
 }
 
 async function renderStreams(gameName) {
   try {
-    await getGameStreamsAPI((myJson) => {
-      addStreamsToNavbar(myJson, gameName);
+    await getGameStreamsAPI().then((data) => {
+      addStreamsToNavbar(data, gameName);
       if (isFirstVisit === true) {
-        addTopGamesStreamsToContent(myJson);
+        addTopGamesStreamsToContent(data);
       }
       isFirstVisit = false;
     });
@@ -99,27 +93,23 @@ async function renderStreams(gameName) {
   }
 }
 
-async function getGameStreamsAPIOnlyNine(gameName, cb) {
-  await fetch(
+async function getGameStreamsAPIOnlyNine(gameName) {
+  const response = await fetch(
     GAMES_STREAMS_URL + encodeURIComponent(gameName) + "&limit=9",
     HEADERS
-  )
-    .then((response) => {
-      return response.json();
-    })
-    .then((myJson) => {
-      return cb(myJson);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  );
+  const data = response.json();
+  return data;
 }
 
 async function renderStreamsOnlyNine(gameName) {
-  await getGameStreamsAPIOnlyNine(gameName, (myJson) => {
-    const data = myJson;
-    addStreamsToContent(data);
-  });
+  try {
+    await getGameStreamsAPIOnlyNine(gameName).then((data) => {
+      addStreamsToContent(data);
+    });
+  } catch {
+    (err) => console.log(err);
+  }
 }
 
 // 點擊選單切換 streams
