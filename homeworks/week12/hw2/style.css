@@ -1,0 +1,74 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 20px;
+}
+
+.input-todo-block {
+  display: flex;
+}
+
+.add-todo-btn {
+  margin-left: 20px;
+  min-width: 200px;
+}
+
+.card {
+  margin-top: 12px;
+  display: flex;
+}
+
+.check-block {
+  display: flex;
+}
+
+.form-check ~ .form-check {
+  margin-left: 12px;
+}
+
+.delete-all-btn {
+  margin-left: 12px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.completed-background {
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+.check-completed,
+.check-incompleted,
+.check-all {
+  background: rgb(13, 111, 253);
+  color: rgb(255, 255, 255);
+}
+
+.check-selected {
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+.edit-todo-text {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.save-btn {
+  margin-left: 12px;
+}

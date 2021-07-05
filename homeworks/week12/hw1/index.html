@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>week12</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .card {
+        margin-top: 12px;
+      }
+    </style>
+    <script>
+      const site_key = "chinghsuan";
+      const commentDOM = $(".comments");
+      let before = "";
+      let lastId = "";
+
+      const buttonHTML = `
+        <button class="load-more btn btn-primary">載入更多</button>
+      `;
+
+      function escape(string) {
+        const map = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#x27;",
+          "/": "&#x2F;",
+        };
+        const reg = /[&<>"'/]/gi;
+        return string.replace(reg, (match) => map[match]);
+      }
+
+      function getCommentsAPI(site_key, before, cb) {
+        let url = `http://mentor-program.co/mtr04group1/chinghsuan/week12/hw1/api_comments.php?site_key=${site_key}`;
+        if (before) {
+          url += "&before=" + before;
+        }
+        // console.log(url);
+        $.ajax({
+          url,
+        }).done((data) => {
+          cb(data);
+        });
+      }
+
+      function getComments() {
+        const commentDOM = $(".comments");
+        getCommentsAPI(site_key, before, (data) => {
+          if (!data) {
+            alert(data.message);
+            return;
+          }
+          const comments = data.discussions;
+          let length = comments.length;
+
+          for (let comment of comments) {
+            addCommentToDOM(commentDOM, comment);
+          }
+          if (length !== 0) {
+            lastId = comments[comments.length - 1].id;
+            $(".load-more").hide();
+            commentDOM.append(buttonHTML);
+          } else {
+            $(".load-more").hide();
+            return;
+          }
+        });
+      }
+
+      function addCommentToDOM(wrapper, comment, isPrepend) {
+        const commentHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${escape(comment.nickname)}</h5>
+                    <p class="card-text">${escape(comment.content)}</p>
+                </div>
+            </div>
+          `;
+        if (isPrepend) {
+          if (!comment.nickname || !comment.content) {
+            alert("please check your input");
+            return;
+          }
+          wrapper.prepend(commentHTML);
+          $.ajax({
+            type: "POST",
+            url: "http://mentor-program.co/mtr04group1/chinghsuan/week12/hw1/api_add_comments.php?site_key=chinghsuan",
+            data: comment,
+          });
+        } else {
+          wrapper.append(commentHTML);
+        }
+      }
+
+      // start
+      $(document).ready(() => {
+        const commentDOM = $(".comments");
+        getComments();
+
+        $(".add-comment-form").submit((e) => {
+          const commentData = {
+            site_key: "chinghsuan",
+            nickname: $("input[name=nickname]").val().trim(),
+            content: $("textarea[name=content]").val().trim(),
+          };
+
+          e.preventDefault();
+
+          addCommentToDOM(commentDOM, commentData, true);
+          // 清空輸入欄位
+          $("input[name=nickname]").val("");
+          $("textarea[name=content]").val("");
+        });
+
+        commentDOM.on("click", ".load-more", (e) => {
+          before = lastId;
+          getComments();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="wrapper p-3">
+      <form class="add-comment-form">
+        <div class="mb-3">
+          <label for="nickname" class="form-label">暱稱</label>
+          <input
+            type="text"
+            name="nickname"
+            class="form-control"
+            id="nickname"
+          />
+          <div class="mb-3">
+            <label for="content" class="form-label">留言</label>
+            <textarea
+              class="form-control"
+              name="content"
+              id="content"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+      </form>
+      <section class="comments"></section>
+    </div>
+  </body>
+</html>
