@@ -1,6 +1,7 @@
 (閱讀完文章要用自己的話說出來真的難...尤其這麼硬的文...)
+[舒服版](https://codemonkey.coderbridge.io/2021/07/11/web-structure-design/)
 
-![架構圖](https://codemonkey.coderbridge.io/2021/07/11/web-structure-design/)
+[架構圖](https://static.coderbridge.com/img/oliver841025/e45255e679f4469c9c5316b4d8d5e00d.jpg)
 
 並非每一個系統、公司都要做系統設計，如果是流量小、資料量小或客群少的系統，不做的話效率可能還更高，因為設計系統架構需要投入時間與人力。
 
@@ -176,7 +177,7 @@
 
 ### 短網址
 
-![短網址](https://static.coderbridge.com/img/oliver841025/26f36dcb4a2b45f28afe3db84ccd80d0.jpg)
+[短網址](https://static.coderbridge.com/img/oliver841025/26f36dcb4a2b45f28afe3db84ccd80d0.jpg)
 左邊是查詢短網址用，右邊是申請短網址用。
 
 簡單說，把又臭又長的網址，縮短成很短很短的網址，好用於分享或紀錄。
