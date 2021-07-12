@@ -34,7 +34,7 @@ Google 提供的 DNS：
 
 為了交易的並行性與獨立性，需透過做「記號」來標記該資料狀態正在被讀取或寫入，其他交易則根據該記號決定能否執行其他操作，而這個記號就是所謂的 lock（交易鎖定）。
 
-```JavaScript
+```PHP
 $conn->autocommit(FALSE);
 $conn->begin_transaction();
 $conn->query("SELECT amount from products where id = 1 for update");
