@@ -198,6 +198,6 @@ Key Generations Service
 每一個決定都有取有捨，不一定哪一個特別好、特別適合，只是要針對遇到的情況做調整，軟硬體或是技術都是，這邊每一個項目都可以再細講下去，都是一個不小的領域，但這邊我們專注討論在架構設計，所以就不細究每一個項目，而是點到即可。
 
 參考資料來源：
-![系統設計101—大型系統的演進（上）](https://medium.com/%E5%BE%8C%E7%AB%AF%E6%96%B0%E6%89%8B%E6%9D%91/backend-architecture-101-5c425e760a13)
-![教你怎麼實現縮短網址功能](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/729000/)
-![短網址(short URL)系統的原理及其實現](https://zh.codeprj.com/blog/95696f1.html)
+[系統設計 101—大型系統的演進（上）](https://medium.com/%E5%BE%8C%E7%AB%AF%E6%96%B0%E6%89%8B%E6%9D%91/backend-architecture-101-5c425e760a13)
+[教你怎麼實現縮短網址功能](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/729000/)
+[短網址(short URL)系統的原理及其實現](https://zh.codeprj.com/blog/95696f1.html)
