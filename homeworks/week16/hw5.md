@@ -20,7 +20,7 @@
 
 ## event loop
 
-這個算是收穫比較多的一環，了解說為什麼網頁有時候 load 那麼久的原因，就是你 call stack 的東西還沒消化完，callback queue 沒辦法被放進來。其實只要在腦中跑過一次 call stack, webAPI, callback queue, event loop 就會沒那麼難，加上連結中附的影片講的非常好，幾個重點
+這個算是收穫比較多的一環，了解說為什麼網頁有時候 load 那麼久的原因，就是你 call stack 的東西還沒消化完，callback queue 裡面的 cb 沒辦法被放進來。其實只要在腦中跑過一次 call stack, webAPI, callback queue, event loop 就會沒那麼難，加上連結中附的影片講的非常好，幾個重點
 
 - 分清楚哪些 function 是環境給的，哪些是 JS 內建的
 - call stack 東西消化完，才會輪到 event loop 把 call back queue 的東西丟上去
