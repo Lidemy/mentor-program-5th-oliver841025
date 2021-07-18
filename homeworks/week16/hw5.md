@@ -24,7 +24,7 @@
 
 - 分清楚哪些 function 是環境給的，哪些是 JS 內建的
 - call stack 東西消化完，才會輪到 event loop 把 call back queue 的東西丟上去
-- setTimeout(fn, 200) 只能保證 2 後**即將會**執行，但不能保證 2 秒後會**立即**執行
+- setTimeout(fn, 2000) 只能保證 2 後**即將會**執行，但不能保證 2 秒後會**立即**執行
 
 ## 總結
 
