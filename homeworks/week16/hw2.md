@@ -30,42 +30,42 @@ i: 4
 2. `console.log("i: " + i)` ，也就是 `console.log("i: 0")` 被呼叫因此進入 call stack 的最上方
 3. 印出 `i: 0`
 4. 將 `console.log("i: 0")` 從 call stack 最上方 pop off
-5. `setTimeout()` 進入 call stack 最上方，開始計時器，0 秒後，`console.log(i)` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
+5. `setTimeout()` 進入 call stack 最上方，開始計時器，0 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 6. `i++`，`i = 1`，迴圈繼續
 7. `console.log("i: " + i)` ，也就是 `console.log("i: 1")` 被呼叫因此進入 call stack 的最上方
 8. 印出 `i: 1`
 9. 將 `console.log("i: 1")` 從 call stack 最上方 pop off
-10. `setTimeout()` 進入 call stack 最上方，開始計時器，1 秒後，`console.log(i)` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
+10. `setTimeout()` 進入 call stack 最上方，開始計時器，1 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 11. `i++`，`i = 2`，迴圈繼續
 12. `console.log("i: " + i)` ，也就是 `console.log("i: 2")` 被呼叫因此進入 call stack 的最上方
 13. 印出 `i: 2`
 14. 將 `console.log("i: 2")` 從 call stack 最上方 pop off
-15. `setTimeout()` 進入 call stack 最上方，開始計時器，2 秒後，`console.log(i)` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
+15. `setTimeout()` 進入 call stack 最上方，開始計時器，2 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 16. `i++`，`i = 3`，迴圈繼續
 17. `console.log("i: " + i)` ，也就是 `console.log("i: 3")` 被呼叫因此進入 call stack 的最上方
 18. 印出 `i: 3`
 19. 將 `console.log("i: 3")` 從 call stack 最上方 pop off
-20. `setTimeout()` 進入 call stack 最上方，開始計時器，3 秒後，`console.log(i)` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
+20. `setTimeout()` 進入 call stack 最上方，開始計時器，3 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 21. `i++`，`i = 4`，迴圈繼續
 22. `console.log("i: " + i)` ，也就是`console.log("i: 4")` 被呼叫因此進入 call stack 的最上方
 23. 印出 `i: 4`
 24. 將 `console.log("i: 4")` 從 call stack 最上方 pop off
-25. `setTimeout()` 進入 call stack 最上方，開始計時器，4 秒後，`console.log(i)` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
+25. `setTimeout()` 進入 call stack 最上方，開始計時器，4 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 26. `i++`，`i = 5`，迴圈結束
 27. 將 main() 從 call stack 最上方 pop off
-28. call stack 已清空，event loop 將 callback queue 中第一個 callback，`console.log(i)，此時 `i = 5`，也就是 `console.log(5)` 放到 call stack 最上方
+28. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 29. 印出 `5`
 30. 將 `console.log(5)` 從 call stack 最上方 pop off
-31. call stack 已清空，event loop 將 callback queue 中第一個 callback，`console.log(i)，此時 `i = 5`，也就是 `console.log(5)` 放到 call stack 最上方
+31. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 32. 印出 `5`
 33. 將 `console.log(5)` 從 call stack 最上方 pop off
-34. call stack 已清空，event loop 將 callback queue 中第一個 callback，`console.log(i)，此時 `i = 5`，也就是 `console.log(5)` 放到 call stack 最上方
+34. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 35. 印出 `5`
 36. 將 `console.log(5)` 從 call stack 最上方 pop off
-37. call stack 已清空，event loop 將 callback queue 中第一個 callback，`console.log(i)，此時 `i = 5`，也就是 `console.log(5)` 放到 call stack 最上方
+37. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 38. 印出 `5`
 39. 將 `console.log(5)` 從 call stack 最上方 pop off
-40. call stack 已清空，event loop 將 callback queue 中第一個 callback，`console.log(i)，此時 `i = 5`，也就是 `console.log(5)` 放到 call stack 最上方
+40. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 41. 印出 `5`
 42. 將 `console.log(5)` 從 call stack 最上方 pop off
 

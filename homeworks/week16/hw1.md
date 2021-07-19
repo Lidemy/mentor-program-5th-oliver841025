@@ -27,19 +27,19 @@ console.log(5);
 2. `console.log(1)` 被呼叫因此進入 call stack 的最上方
 3. 印出 `1`
 4. 將 `console.log(1)` 從 call stack 最上方 pop off
-5. `setTimeout()` 進入 call stack 最上方，開始計時器，0ms 後，`console.log(2)` 會被放到 callback queue 中等待執行<>
+5. `setTimeout()` 進入 call stack 最上方，開始計時器，0ms 後，`() => {console.log(2)}` 會被放到 callback queue 中等待執行
 6. 將 `setTimeout()` 從 call stack 最上方 pop off
 7. `console.log(3)` 被呼叫因此進入 call stack 的最上方
 8. 印出 `3`
 9. 將 `console.log(3)` 從 call stack 最上方 pop off
-10. `setTimeout()` 進入 call stack 最上方，開始計時器，0ms 後，`console.log(4)` 會被放到 callback queue 中等待執行
+10. `setTimeout()` 進入 call stack 最上方，開始計時器，0ms 後，`() => {console.log(4)}` 會被放到 callback queue 中等待執行
 11. `console.log(5)` 被呼叫因此進入 call stack 的最上方
 12. 印出 `5`
 13. 將 main() 從 call stack 最上方 pop off
-14. call stack 已清空，event loop 將 callback queue 中第一個 callback，也就是 `console.log(2)` 放到 call stack 最上方
+14. call stack 已清空，event loop 將 callback queue 中第一個 callback，也就是 `() => {console.log(2)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(2)，所以把 console.log 丟進去 call stack
 15. 印出 `2`
 16. 將 `console.log(2)` 從 call stack 最上方 pop off
-17. call stack 已清空，event loop 將 callback queue 中第一個 callback，也就是 `console.log(4)` 放到 call stack 最上方
+17. call stack 已清空，event loop 將 callback queue 中第一個 callback，也就是 `() => {console.log(4)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(4)，所以把 console.log 丟進去 call stack
 18. 印出 `4`
 19. 將 `console.log(4)` 從 call stack 最上方 pop off
 20. call back 與 callback queue 清空，程式執行完畢
