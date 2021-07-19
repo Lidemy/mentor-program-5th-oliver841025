@@ -27,12 +27,12 @@ console.log(5);
 2. `console.log(1)` 被呼叫因此進入 call stack 的最上方
 3. 印出 `1`
 4. 將 `console.log(1)` 從 call stack 最上方 pop off
-5. `setTimeout()` 進入 call stack 最上方，開始計時器，0ms 後，`() => {console.log(2)}` 會被放到 callback queue 中等待執行
+5. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，0ms 後，`() => {console.log(2)}` 會被放到 callback queue 中等待執行
 6. 將 `setTimeout()` 從 call stack 最上方 pop off
 7. `console.log(3)` 被呼叫因此進入 call stack 的最上方
 8. 印出 `3`
 9. 將 `console.log(3)` 從 call stack 最上方 pop off
-10. `setTimeout()` 進入 call stack 最上方，開始計時器，0ms 後，`() => {console.log(4)}` 會被放到 callback queue 中等待執行
+10. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，0ms 後，`() => {console.log(4)}` 會被放到 callback queue 中等待執行
 11. `console.log(5)` 被呼叫因此進入 call stack 的最上方
 12. 印出 `5`
 13. 將 main() 從 call stack 最上方 pop off
