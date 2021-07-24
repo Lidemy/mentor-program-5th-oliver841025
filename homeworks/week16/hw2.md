@@ -27,47 +27,47 @@ i: 4
 執行步驟：
 
 1. 宣告變數 i，賦值 0，i < 5，進入迴圈
-2. `console.log("i: " + i)` ，也就是 `console.log("i: 0")` 被呼叫因此進入 call stack 的最上方
+2. `console.log("i: " + i)` ，也就是 `console.log("i: 0")` 被 push 進 call stack 的最上方
 3. 印出 `i: 0`
-4. 將 `console.log("i: 0")` 從 call stack 最上方 pop off
+4. 將 `console.log("i: 0")` 從 call stack 最上方移除
 5. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，0 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 6. `i++`，`i = 1`，迴圈繼續
-7. `console.log("i: " + i)` ，也就是 `console.log("i: 1")` 被呼叫因此進入 call stack 的最上方
+7. `console.log("i: " + i)` ，也就是 `console.log("i: 1")` 被 push 進 call stack 的最上方
 8. 印出 `i: 1`
-9. 將 `console.log("i: 1")` 從 call stack 最上方 pop off
+9. 將 `console.log("i: 1")` 從 call stack 最上方移除
 10. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，1 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 11. `i++`，`i = 2`，迴圈繼續
-12. `console.log("i: " + i)` ，也就是 `console.log("i: 2")` 被呼叫因此進入 call stack 的最上方
+12. `console.log("i: " + i)` ，也就是 `console.log("i: 2")` 被 push 進 call stack 的最上方
 13. 印出 `i: 2`
-14. 將 `console.log("i: 2")` 從 call stack 最上方 pop off
+14. 將 `console.log("i: 2")` 從 call stack 最上方移除
 15. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，2 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 16. `i++`，`i = 3`，迴圈繼續
-17. `console.log("i: " + i)` ，也就是 `console.log("i: 3")` 被呼叫因此進入 call stack 的最上方
+17. `console.log("i: " + i)` ，也就是 `console.log("i: 3")` 被 push 進 call stack 的最上方
 18. 印出 `i: 3`
-19. 將 `console.log("i: 3")` 從 call stack 最上方 pop off
+19. 將 `console.log("i: 3")` 從 call stack 最上方移除
 20. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，3 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 21. `i++`，`i = 4`，迴圈繼續
-22. `console.log("i: " + i)` ，也就是`console.log("i: 4")` 被呼叫因此進入 call stack 的最上方
+22. `console.log("i: " + i)` ，也就是`console.log("i: 4")` 被 push 進 call stack 的最上方
 23. 印出 `i: 4`
-24. 將 `console.log("i: 4")` 從 call stack 最上方 pop off
+24. 將 `console.log("i: 4")` 從 call stack 最上方移除
 25. `setTimeout()` 進入 call stack 最上方，讓瀏覽器開始計時器，4 秒後，`() => {console.log(i)}` 會被放到 callback queue 中等待執行，`setTimeout()` pop 出 call stack
 26. `i++`，`i = 5`，迴圈結束
-27. 將 main() 從 call stack 最上方 pop off
+27. 將 main() 從 call stack 最上方移除
 28. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 29. 印出 `5`
-30. 將 `console.log(5)` 從 call stack 最上方 pop off
+30. 將 `console.log(5)` 從 call stack 最上方移除
 31. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 32. 印出 `5`
-33. 將 `console.log(5)` 從 call stack 最上方 pop off
+33. 將 `console.log(5)` 從 call stack 最上方移除
 34. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 35. 印出 `5`
-36. 將 `console.log(5)` 從 call stack 最上方 pop off
+36. 將 `console.log(5)` 從 call stack 最上方移除
 37. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 38. 印出 `5`
-39. 將 `console.log(5)` 從 call stack 最上方 pop off
+39. 將 `console.log(5)` 從 call stack 最上方移除
 40. call stack 已清空，event loop 將 callback queue 中第一個 callback，`() => {console.log(i)}，此時 `i = 5`，也就是 `() => {console.log(5)}` 放到 call stack 最上方，執行之後發現這個 function 裡面還要呼叫 console.log(5)，所以把 console.log 丟進去 call stack
 41. 印出 `5`
-42. 將 `console.log(5)` 從 call stack 最上方 pop off
+42. 將 `console.log(5)` 從 call stack 最上方移除
 
 43. call back 與 callback queue 清空，程式執行完畢
 
@@ -82,7 +82,7 @@ for (var i = 0; i < 5; i++) {
 }
 ```
 
-因為 `var` 是 function scope variable，就是以 function 為作用域，因此可以看做：
+因為 `var` 是 function scope variable，就是以 function 為作用域（換句話說，因為並沒有在 function 裡面宣告，所以 i 變成全域變數，任何地方都可以存取到它），因此可以看做：
 
 ```js
 var i;
