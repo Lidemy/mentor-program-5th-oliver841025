@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+    
+    <div class="container-wrapper">
+        <div class="posts">
+            <article class="post">
+            <div class="post__header">
+                <div><%= article.title %></div>
+                <% if(id === 1){ %>
+                <div class="post__actions">
+                    <a class="post__action" href="/update-article/<%= article.id %>">編輯</a>
+                </div>
+                <% } %>
+            </div>
+            <div class="post__info">
+                <%= article.createdAt %><span class="index_category_span"><%= article.Category.categoryName %></span>
+            </div>
+            <div class="post__content">
+                <%= article.content %>
+            </div>
+            </article>
+        </div>
+    </div>
+    
+</body>
+</html>

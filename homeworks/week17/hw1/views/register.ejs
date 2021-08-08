@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+    
+    <div class="login-wrapper">
+        <h2>Register</h2>
+        <h2><%= errorMessage %></h2>
+        <form action="/register" method="POST">
+            <div class="input__wrapper">
+                <div class="input__label">USERNAME</div>
+                <input class="input__field" type="text" name="username" />
+            </div>
+        
+            <div class="input__wrapper">
+                <div class="input__label">PASSWORD</div>
+                <input class="input__field" type="password" name="password" />
+            </div>
+            <input class="down_submit_login" type='submit' value="提交" />
+        </form>
+    </div>
+</body>
+</html>

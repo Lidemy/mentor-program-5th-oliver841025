@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+
+    <div class="container-wrapper new-post_form">
+        <div class="posts">
+            <article class="post">
+                <%= errorMessage %>
+                <form method="POST" action="/update-article/<%= article.id %>" >
+                    <div class="input__wrapper">
+                        <input class="input__field" type="text" name="title" value='<%= article.title %>'/>
+                    </div>
+                    <div class="new-post_select">
+                        <select name="category_id">
+                            <option value="">請選擇文章分類</option>
+                                <% for(let category of categoryArr){ %>
+                                    <option value="<%= category.id %>" <% if(article.CategoryId === category.id){ %>
+                                        <%= selected="selected"%>
+                                    <% } %>
+                                    >
+                                    <%= category.categoryName %>
+                                    </option>
+                                <% } %>
+                        </select>
+                    </div>
+                    <div class="input__wrapper">
+                        <textarea class="input__field" type="text" name="content" rows="10"><%= article.content %></textarea>
+                    </div>
+                    <button class="btn-add_post" type='submit'>提交</button>
+                </form>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

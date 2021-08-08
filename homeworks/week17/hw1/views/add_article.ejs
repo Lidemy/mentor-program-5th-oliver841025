@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+    
+    <div class="container-wrapper new-post_form">
+        <div class="posts">
+            <article class="post">
+                <h3 class="new-post_title" >發表文章：</h3>
+                <h2><%= errorMessage %></h2>
+                <form method="POST" action="/add-article" >
+                <div class="input__wrapper">
+                    <input class="input__field" type="text" name="title" placeholder="請輸入文章標題"/>
+                </div>
+                <div class="new-post_select">
+                    <select name="categoryId">
+                        <option>請選擇分類</option>
+                        <% for(let item of categoryArr){ %>
+                            <option value="<%= item.id %>"><%= item.categoryName %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="input__wrapper">
+                    <textarea class="input__field" type="text" name="content" rows="10"></textarea>
+                </div>
+                <button class="btn-add_post" type='submit'>新增</button>
+                </form>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

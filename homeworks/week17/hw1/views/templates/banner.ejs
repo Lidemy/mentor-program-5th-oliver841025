@@ -1,0 +1,35 @@
+<nav class="navbar">
+    <div class="wrapper navbar__wrapper">
+      <div class="navbar__site-name">
+        <a href='/'>小小碼農</a>
+      </div>
+      <ul class="navbar__list">
+        <div>
+          <li><a href="/show-articles-list">文章列表</a></li>
+          <li><a href="/show-categories">分類專區</a></li>
+          <% if(id === 1){ %>
+            <li><a href="/add-category">新增分類</a></li>
+          <% } %>
+          <li><a href="#">關於我</a></li>
+        </div>
+        <div>
+          <% if(id === 1){ %>
+            <li><a href="/add-article">發表文章</a></li>
+            <li><a href="/back-stage">管理後台</a></li>
+            <li><a href="/logout">登出</a></li>
+          <% }else if(id !== 1 && id){ %>
+            <li><a href="/logout">登出</a></li>
+          <% }else{ %>
+            <li><a href="/login">登入</a></li>
+            <li><a href="/register">註冊</a></li>
+          <% } %>
+        </div>
+      </ul>
+    </div>
+  </nav>
+  <section class="banner">
+    <div class="banner__wrapper">
+        <h1>存放技術之地</h1>
+        <div>Welcome to my blog</div>
+    </div>
+  </section>

@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+    
+    <div class="container-wrapper new-post_form">
+        <div class="posts">
+            <article class="post">
+                <h3 class="new-post_title" >新增分類：</h3>
+                <h2><%= errorMessage %></h2>
+                <form method="POST" action="/add-category" >
+                <div class="input__wrapper">
+                    <input class="input__field" type="text" name="category" placeholder="請輸入分類名稱"/>
+                </div>
+                <button class="btn-add_post" type='submit'>新增</button>
+                </form>
+            </article>
+        </div>
+    </div>
+</body>
+</html>
