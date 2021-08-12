@@ -91,6 +91,7 @@ const userController = {
       req.session.username = username;
       req.session.userId = user.id;
       res.redirect("/");
+      return;
     });
     return;
   },

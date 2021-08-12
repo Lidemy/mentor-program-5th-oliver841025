@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "blog",
+    "database": "lottery",
     "host": "localhost",
     "dialect": "mysql"
   },

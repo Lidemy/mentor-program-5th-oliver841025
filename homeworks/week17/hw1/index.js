@@ -6,7 +6,7 @@ const categoryController = require("./controllers/category");
 // 引入 port, 設定 express
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 5000;
 
 //引入 session 狀態儲存, 解析 body, 錯誤顯示
 const session = require("express-session");
@@ -24,13 +24,13 @@ app.use(
     saveUninitialized: true,
   })
 );
+// 靜態資源資料夾 public 讀入設定
+app.use(express.static("public"));
 
 // body-parser 設定
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
-// 靜態資源資料夾 public 讀入設定
-app.use(express.static("public"));
 
 // 全域狀態設定
 app.use((req, res, next) => {
@@ -51,7 +51,7 @@ function isAdmin(req, res, next) {
   if (req.session.userId !== 1) {
     return res.redirect("/");
   }
-  next();
+  return next();
 }
 
 // 路由
@@ -146,6 +146,6 @@ app.get(
 );
 
 // 啟動提示
-app.listen(3001, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
