@@ -1,0 +1,20 @@
+<% if(id === 1){ %>
+    <h2>歡迎管理員大人</h2>
+    <a href="/add-inform">新增獎品</a>
+    <a href="/">回首頁</a>
+    <ul>
+        <% for(let prize of prizes){ %>
+            <li>
+                <h4><%= prize.name %> / 抽中機率：<%= prize.probability %></h4>
+                <div>
+                    <img class="img" src="<%= prize.imgUrl %>">
+                </div>
+                <div><%= prize.description %></div>
+                <a href="/update-inform/<%= prize.id %>">編輯</a>
+                <a href="/delete-inform/<%= prize.id %>">刪除</a>
+            </li>
+        <% } %>
+    </ul>
+<% }else{ %>
+    <h2>you should not pass!!</h2>
+<% } %>

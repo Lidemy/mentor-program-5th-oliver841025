@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('templates/head.ejs')%>
+  </head>
+  <body>
+    <div class="login-block">
+      <h2>我是新增獎品資訊頁面</h2>
+      <%= errorMessage %>
+      <form method="POST" action="/add-inform">
+        <div>
+          名稱： <input type="text" name="name">
+        </div>
+        <div class="password-block">
+          敘述： <textarea name="desc" cols="30" rows="5"></textarea>
+        </div>
+        <div class="password-block">
+          圖片連結： <input type="text" name="imgUrl">
+        </div>
+        <div class="password-block">
+          機率： <input type="text" name="probability">
+        </div>
+        <input class="get-prize-btn" type="submit" value="提交">
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+node_modules/
+config.json
+conn.php
+.DS_STORE
