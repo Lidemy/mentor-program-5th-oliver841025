@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+    
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="admin-posts">
+                <% for(let article of articles){ %>
+                <a class="list_link" href="articles/<%= article.id %>">
+                    <div class="admin-post">
+                    <div class="admin-post__title">
+                        <%= article.title %>
+                    </div>
+                    <div class="admin-post__info">
+                        <div class="admin-post__created-at">
+                        <%= article.Category.categoryName %>
+                        </div>
+                    </div>
+                        <div class="post__actions">
+                                <a class="post__action" href="/delete-article/<%= article.id %>">刪除</a>
+                                <a class="post__action" href="/update-article/<%= article.id %>">編輯</a>
+                            </div>
+                        </div>
+                </a>
+                <% } %>
+            </div>
+        </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('templates/head.ejs')%>
+  </head>
+  <body>
+    <a href="/">回首頁</a>
+    <div class="admin-block">
+        <% if(id){ %>
+            <a href="/back-stage">後台管理</a>
+            <a href="/logout">管理員登出</a>
+        <% }else{ %>
+            <a href="/login">管理員登入</a>
+        <% } %>
+    </div>
+    <% if(prize.imgUrl){ %>
+        <div class="img-block">
+            <img class="img" src="<%= prize.imgUrl%>">
+        </div>
+    <% } %>
+    
+    <div class="card-body">
+        <div class="prize-content-block">
+            <div class="prize-name-block">
+                <h2><%= prize.name %></h2>
+            </div>
+            <div class="prize-desc-block">
+                <h4><%= prize.description%></h4>
+            </div>
+            <div class="one-more-block">
+                <a  href="/draw-prize" class="get-prize-btn">再來一隻</a>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

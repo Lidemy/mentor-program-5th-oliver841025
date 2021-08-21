@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('templates/head.ejs')%>
+  </head>
+  <body>
+    <div class="admin-block">
+      <% if(id){ %>
+        <a href="/back-stage">後台管理</a>
+        <a href="/logout">登出</a>
+      <% }else{ %>
+        <a href="/login">管理員登入</a>
+      <% } %>
+    </div>
+
+    <div class="card-block">
+      <div class="card-title-block">
+        <h2 class="card-title">會抽到什麼掉 san 值的小怪物呢 (´･ω･`)</h2>
+      <div>
+      <div class="card-body">
+          <a href="/draw-prize" class="get-prize-btn">抽個專屬小怪物</a>
+      </div>
+      </a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('templates/head.ejs')%>
+</head>
+<body>
+    <%- include('templates/banner.ejs')%>
+    
+    <div class="container-wrapper new-post_form">
+        <div class="posts">
+        <article class="post">
+            <h3 class="new-post_title" >編輯分類：</h3>
+            <%= errorMessage %>
+            <form method="POST" action="/update-category/<%= category.id %>" >
+                <div class="input__wrapper">
+                    <input class="input__field" type="text" name="category" rows="10" placeholder="<%= category.categoryName %>"></input>
+                </div>
+            <button class="btn-add_post" type='submit'>提交</button>
+            </form>
+        </article>
+        </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+/* * {
+  border: 1px solid green;
+} */
+* {
+  letter-spacing: 1px;
+}
+
+.card-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 200px;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.get-prize-btn {
+  border: none;
+  text-decoration: none;
+  padding: 8px 12px;
+  background: rgb(208, 19, 255);
+  color: white;
+  border-radius: 15px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.get-prize-btn:hover {
+  transform: scale(1.1);
+}
+
+.img {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+}
+
+.img-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prize-content-block {
+  align-items: center;
+  justify-content: center;
+}
+
+.one-more-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prize-name-block,
+.prize-desc-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prize-desc-block {
+  margin-top: -30px;
+}
+
+.login-block {
+  margin: 20px;
+}
+
+.password-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
