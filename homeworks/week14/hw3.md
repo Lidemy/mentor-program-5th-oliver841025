@@ -1,3 +1,5 @@
+[舒服版](https://codemonkey.coderbridge.io/2021/07/12/backend-knowledge/)
+
 ## 什麼是 DNS？Google 有提供的公開的 DNS，對 Google 的好處以及對一般大眾的好處是什麼？
 
 關於 DNS（Domain Name System(或 Service)），網域名稱系統
@@ -34,7 +36,7 @@ Google 提供的 DNS：
 
 為了交易的並行性與獨立性，需透過做「記號」來標記該資料狀態正在被讀取或寫入，其他交易則根據該記號決定能否執行其他操作，而這個記號就是所謂的 lock（交易鎖定）。
 
-```JavaScript
+```PHP
 $conn->autocommit(FALSE);
 $conn->begin_transaction();
 $conn->query("SELECT amount from products where id = 1 for update");
