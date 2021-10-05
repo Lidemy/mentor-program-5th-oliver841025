@@ -34,3 +34,5 @@ Redux 架構圍繞著嚴格的單向資料流
 [Redux 把 Store 轉換成 Props 傳遞的作用](https://note.pcwu.net/2017/03/06/redux-state-to-props/)
 
 ## 該怎麼把 React 跟 Redux 串起來？
+
+使用 react-redux 套件，在需要共用 state 的 component 的父層，用 `<Provider store={store}>`包住，裡面的 component 便可以用 `useSelector()` 來取得 state，用`useDispatch()` 來傳送 action。
